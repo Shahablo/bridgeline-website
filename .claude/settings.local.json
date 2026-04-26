@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:api.anthropic.com)",
-      "mcp__Claude_in_Chrome__tabs_context_mcp"
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(python -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1600,900 --screenshot=_logo1.png \"file:///D:/bridgelinehealth_website/_logo1.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1600,900 --screenshot=_logo2.png \"file:///D:/bridgelinehealth_website/_logo2.html\")",
+      "Bash(cd /tmp)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1600,900 --screenshot=/tmp/logo1.png \"file:///D:/bridgelinehealth_website/_logo1.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1600,900 --screenshot=/tmp/logo2.png \"file:///D:/bridgelinehealth_website/_logo2.html\")",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=1600,900 --screenshot=/tmp/logo6.png \"file:///D:/bridgelinehealth_website/_logo6.html\")",
+      "Bash(python -c ' *)",
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --hide-scrollbars --window-size=600,600 --screenshot=/tmp/logo2_icon.png \"file:///D:/bridgelinehealth_website/_logo2_icon.html\")"
     ]
   }
 }

@@ -7,36 +7,37 @@
   <title>BridgeLine Health | Epic Consulting Talent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     * { margin: 0; }
 
     :root {
-      --bg: #f7f9fc;
-      --surface: #ffffff;
-      --surface-strong: #edf4f2;
-      --ink: #14213d;
-      --body: #334155;
-      --muted: #64748b;
-      --line: #dbe4ee;
-      --teal: #0f766e;
-      --blue: #2563eb;
-      --amber: #b7791f;
-      --rose: #a43b48;
-      --max: 1180px;
+      --bg: #f3f0e8;
+      --surface: #fffdf8;
+      --surface-strong: #ebe7dc;
+      --ink: #111827;
+      --night: #0d1420;
+      --body: rgba(255,250,240,0.74);
+      --muted: rgba(255,250,240,0.58);
+      --line: rgba(255,250,240,0.14);
+      --teal: #0e6f68;
+      --teal-light: #86d8c8;
+      --blue: #295b89;
+      --max: 1200px;
       --pad: 32px;
       --radius: 8px;
-      --shadow: 0 18px 60px rgba(15, 23, 42, 0.10);
+      --shadow: 0 26px 70px rgba(17, 24, 39, 0.16);
       --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: "Source Serif 4", Georgia, serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font);
-      background: var(--bg);
-      color: var(--ink);
+      background: #0a101b;
+      color: #fffaf0;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -44,99 +45,114 @@
 
     a { color: inherit; }
 
+    main {
+      overflow-x: hidden;
+    }
+
+    .hero-shell {
+      position: relative;
+      min-height: 100vh;
+      padding: 28px 42px;
+      overflow: hidden;
+      color: #fffaf0;
+      background:
+        linear-gradient(90deg, rgba(10, 16, 27, 0.93) 0%, rgba(10, 16, 27, 0.72) 54%, rgba(10, 16, 27, 0.34) 100%),
+        url("https://images.unsplash.com/photo-1754538917023-8e4299a51ab0?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 38%, rgba(20,184,166,0.18), transparent 30%),
+        linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.50));
+      pointer-events: none;
+    }
+
+    .hero-shell::after {
+      content: none;
+    }
+
     .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(247, 249, 252, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 3;
+      max-width: 1280px;
+      margin: 0 auto;
     }
 
     .nav {
-      max-width: var(--max);
-      min-height: 72px;
-      margin: 0 auto;
-      padding: 0 var(--pad);
+      min-height: 58px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 28px;
     }
 
     .logo {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      color: #fffaf0;
       text-decoration: none;
       font-weight: 800;
       flex-shrink: 0;
     }
 
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: var(--ink);
-      display: grid;
-      place-items: center;
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 15px;
+    .logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.22);
     }
 
-    .logo span:last-child {
+    .logo span {
       font-size: 16px;
-      color: var(--ink);
+      letter-spacing: 0;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 22px;
+      gap: 28px;
       list-style: none;
-      flex: 1;
       padding: 0;
+      color: rgba(255,250,240,0.78);
     }
 
     .nav-links a {
       text-decoration: none;
-      font-size: 14px;
-      color: var(--body);
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .nav-links a:hover { color: var(--ink); }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
+    .nav-actions { display: none; }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-height: 42px;
-      padding: 0 18px;
-      border-radius: 999px;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 4px;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 900;
       border: 1px solid transparent;
       transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
       white-space: nowrap;
     }
 
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--teal); color: #ffffff; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.18); }
-    .btn-primary:hover { background: #0b625c; }
-    .btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
-    .btn-secondary:hover { box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08); }
-    .btn-dark { background: var(--ink); color: #ffffff; }
+    .btn-primary { background: var(--teal); color: #fffaf0; box-shadow: 0 20px 46px rgba(15,118,110,0.28); }
+    .btn-primary:hover { background: #095c57; }
+    .btn-secondary { background: rgba(255,250,240,0.08); color: #fffaf0; border-color: rgba(255,250,240,0.24); }
+    .btn-secondary:hover { background: rgba(255,250,240,0.12); }
+    .btn-light { background: #fffaf0; color: var(--ink); }
+    .btn-dark { background: var(--ink); color: #fffaf0; }
 
     .menu-button {
       display: none;
@@ -150,271 +166,220 @@
       display: block;
       width: 24px;
       height: 2px;
-      background: var(--ink);
+      background: #fffaf0;
       margin: 5px 0;
       border-radius: 2px;
     }
 
     .hero {
-      max-width: var(--max);
-      width: 100%;
+      position: relative;
+      z-index: 2;
+      min-height: calc(100vh - 96px);
+      max-width: 1480px;
       margin: 0 auto;
-      padding: 80px var(--pad) 56px;
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-      gap: 52px;
+      grid-template-columns: minmax(0, 1180px) 1fr;
       align-items: center;
+      padding: 96px 0 128px;
     }
 
     .hero > *,
     .section > *,
-    .consultant-inner > * {
-      min-width: 0;
-    }
+    .consultant-inner > * { min-width: 0; }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: var(--teal);
-      font-size: 13px;
-      font-weight: 800;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: var(--teal-light);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 20px;
     }
 
     .eyebrow::before {
       content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--teal);
+      width: 44px;
+      height: 2px;
+      background: var(--teal-light);
     }
 
     .hero h1 {
-      font-size: 64px;
-      line-height: 1.03;
+      max-width: 1180px;
+      margin-bottom: 34px;
+      font-family: var(--serif);
+      font-size: 96px;
+      line-height: 0.96;
       letter-spacing: 0;
-      max-width: 720px;
-      margin-bottom: 22px;
+      font-weight: 700;
     }
 
     .hero-copy {
-      font-size: 19px;
-      color: var(--body);
-      max-width: 640px;
-      margin-bottom: 30px;
+      max-width: 880px;
+      margin-bottom: 38px;
+      color: rgba(255,250,240,0.78);
+      font-size: 22px;
+      line-height: 1.68;
     }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
+      gap: 18px;
       flex-wrap: wrap;
-      margin-bottom: 28px;
+      margin-bottom: 40px;
     }
 
     .mini-proof {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
+      display: grid;
+      gap: 14px;
+      margin: 0 0 34px;
+      color: rgba(255,250,240,0.86);
+      font-size: 15px;
+      font-weight: 800;
     }
 
     .mini-proof span {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 12px;
-    }
-
-    .ops-board {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .board-top {
-      padding: 22px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      background: var(--surface-strong);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .board-top h2 {
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-
-    .board-top p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .board-badge {
-      color: #ffffff;
-      background: var(--teal);
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .candidate-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .candidate-row:last-child { border-bottom: 0; }
-
-    .candidate-main strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-
-    .candidate-main span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .candidate-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--body);
-    }
-
-    .pill {
       display: inline-flex;
       align-items: center;
-      border-radius: 999px;
-      background: #eef6ff;
-      color: var(--blue);
-      padding: 4px 8px;
-      font-size: 12px;
-      font-weight: 800;
+      gap: 10px;
     }
 
-    .board-checks {
+    .mini-proof span::before {
+      content: "+";
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid var(--line);
+      place-items: center;
+      background: rgba(134,216,200,0.16);
+      color: var(--teal-light);
+      font-weight: 900;
+      flex: 0 0 auto;
     }
 
-    .board-check {
-      padding: 16px;
-      border-right: 1px solid var(--line);
-      font-size: 12px;
-      color: var(--body);
+    .stamp {
+      display: none;
     }
 
-    .board-check:last-child { border-right: 0; }
-    .board-check strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
-
-    .stat-strip {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 var(--pad) 72px;
+    .hero-stats {
+      position: absolute;
+      left: 42px;
+      right: 42px;
+      bottom: 28px;
+      z-index: 3;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: 1px;
+      max-width: 1280px;
+      background: rgba(255,250,240,0.14);
+      border: 1px solid rgba(255,250,240,0.14);
     }
 
     .stat {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 22px;
+      padding: 18px 20px;
+      background: rgba(10,16,27,0.42);
+      backdrop-filter: blur(10px);
     }
 
     .stat strong {
       display: block;
-      font-size: 30px;
-      line-height: 1;
-      margin-bottom: 10px;
-      color: var(--ink);
+      margin-bottom: 5px;
+      color: #fffaf0;
+      font-size: 16px;
+      font-weight: 900;
     }
 
     .stat span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
+      color: rgba(255,250,240,0.58);
+      font-size: 12px;
+      line-height: 1.55;
     }
 
     .section {
-      max-width: var(--max);
+      position: relative;
+      max-width: none;
       margin: 0 auto;
-      padding: 72px var(--pad);
+      padding: 96px 42px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(134,216,200,0.12), transparent 26%),
+        linear-gradient(135deg, rgba(13,20,32,0.98), rgba(17,28,43,0.96));
+      border-top: 1px solid rgba(255,250,240,0.08);
     }
 
     .section-header {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
       display: grid;
       grid-template-columns: 0.75fr 1.25fr;
-      gap: 44px;
+      gap: 48px;
       align-items: start;
-      margin-bottom: 34px;
+      margin-bottom: 42px;
     }
 
     .section-kicker {
-      color: var(--teal);
-      font-size: 13px;
-      font-weight: 800;
+      color: var(--teal-light);
+      font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .section-title {
-      font-size: 42px;
-      line-height: 1.12;
-      margin-bottom: 14px;
+      font-family: var(--serif);
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 1.02;
+      margin-bottom: 16px;
+      letter-spacing: 0;
     }
 
     .section-lede {
-      color: var(--body);
+      color: rgba(255,250,240,0.70);
       font-size: 17px;
-      max-width: 720px;
+      max-width: 760px;
     }
 
     .outcomes-grid,
     .services-grid,
-    .consultant-grid {
+    .consultant-grid,
+    .faq-grid {
       display: grid;
+      max-width: 1280px;
+      margin: 0 auto;
+      gap: 0;
+      background: transparent;
+      border-top: 1px solid rgba(255,250,240,0.18);
+      border-bottom: 1px solid rgba(255,250,240,0.18);
+    }
+
+    .outcomes-grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
     }
 
     .outcome,
     .service,
-    .consultant-benefit {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
+    .consultant-benefit,
+    .faq-item {
+      background: rgba(255,253,248,0.82);
+      background: linear-gradient(180deg, rgba(255,250,240,0.075), rgba(255,250,240,0.035));
+      border-right: 1px solid rgba(255,250,240,0.12);
+      padding: 28px;
     }
 
     .outcome small,
     .service small,
     .consultant-benefit small {
       display: block;
-      color: var(--teal);
-      font-weight: 800;
-      margin-bottom: 16px;
+      color: var(--teal-light);
+      font-weight: 900;
+      margin-bottom: 20px;
       text-transform: uppercase;
       font-size: 12px;
+      letter-spacing: 0.06em;
     }
 
     .outcome h3,
@@ -422,69 +387,81 @@
     .consultant-benefit h3 {
       font-size: 20px;
       margin-bottom: 10px;
+      letter-spacing: 0;
     }
 
     .outcome p,
     .service p,
-    .consultant-benefit p {
+    .consultant-benefit p,
+    .faq-item p {
       color: var(--muted);
       font-size: 14px;
     }
 
     .dark-band {
-      background: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(10, 16, 27, 0.96), rgba(10, 16, 27, 0.72)),
+        url("https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?auto=format&fit=crop&w=1800&q=80") center/cover;
       color: #ffffff;
-      margin: 24px 0;
+      margin: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .dark-band .section-title,
     .dark-band .section-kicker { color: #ffffff; }
-    .dark-band .section-lede { color: rgba(255, 255, 255, 0.74); }
+
+    .dark-band .section-lede { color: rgba(255,255,255,0.74); }
 
     .process-grid {
+      max-width: 1280px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: var(--radius);
-      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.16);
+      gap: 1px;
     }
 
     .process-step {
-      padding: 26px;
-      border-right: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 30px;
+      background: linear-gradient(180deg, rgba(255,250,240,0.08), rgba(255,250,240,0.035));
     }
 
-    .process-step:last-child { border-right: 0; }
-
     .process-step small {
-      color: #8fd6c6;
-      font-weight: 800;
+      color: var(--teal-light);
+      font-weight: 900;
       text-transform: uppercase;
       font-size: 12px;
     }
 
     .process-step h3 {
-      font-size: 22px;
-      margin: 18px 0 8px;
+      font-size: 24px;
+      margin: 20px 0 10px;
+      letter-spacing: 0;
     }
 
     .process-step p {
-      color: rgba(255, 255, 255, 0.70);
+      color: rgba(255,255,255,0.70);
       font-size: 14px;
     }
 
     .split {
+      max-width: 1280px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      gap: 1px;
+      background: transparent;
+      border-top: 1px solid rgba(255,250,240,0.18);
+      border-bottom: 1px solid rgba(255,250,240,0.18);
     }
 
     .module-panel,
     .request-panel {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,250,240,0.075), rgba(255,250,240,0.035));
+      padding: 32px;
+      border-right: 1px solid rgba(255,250,240,0.12);
     }
 
     .module-list {
@@ -495,12 +472,14 @@
     }
 
     .module-list span {
-      background: #eef6ff;
-      color: #1e3a8a;
+      background: #e8f1f6;
+      color: #d9fffa;
+      background: rgba(134,216,200,0.14);
+      border: 1px solid rgba(134,216,200,0.18);
       border-radius: 999px;
       padding: 7px 10px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .request-list {
@@ -519,110 +498,112 @@
     }
 
     .request-list li:last-child { border-bottom: 0; }
-    .request-list li::before { content: "+"; color: var(--teal); font-weight: 800; }
+    .request-list li::before { content: "+"; color: var(--teal); font-weight: 900; }
 
     .services-grid { grid-template-columns: repeat(3, 1fr); }
 
     .service {
       display: flex;
       flex-direction: column;
-      min-height: 290px;
+      min-height: 310px;
+      border-right: 1px solid rgba(255,250,240,0.12);
     }
 
     .service ul {
-      margin: 20px 0 24px;
+      margin: 22px 0 28px;
       padding: 0;
       list-style: none;
-      color: var(--body);
+      color: rgba(255,250,240,0.70);
       font-size: 14px;
       flex: 1;
     }
 
     .service li {
-      padding: 9px 0;
+      padding: 10px 0;
       border-top: 1px solid var(--line);
     }
 
-    .service a {
+    .service .btn,
+    .final-cta .btn {
+      background: rgba(255,250,240,0.08);
+      color: #fffaf0;
+      border-color: var(--line);
       align-self: flex-start;
     }
 
     .consultant-callout {
-      background: var(--surface-strong);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(10,16,27,0.95), rgba(10,16,27,0.66)),
+        url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1800&q=80") center/cover;
+      border-top: 1px solid rgba(255,250,240,0.10);
+      border-bottom: 1px solid rgba(255,250,240,0.10);
     }
 
     .consultant-inner {
-      max-width: var(--max);
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 72px var(--pad);
+      padding: 92px var(--pad);
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
-      gap: 42px;
+      gap: 46px;
       align-items: center;
     }
 
     .consultant-inner h2 {
-      font-size: 40px;
-      line-height: 1.12;
+      font-family: var(--serif);
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 1.04;
       margin-bottom: 16px;
+      letter-spacing: 0;
     }
 
     .consultant-inner p {
-      color: var(--body);
+      color: rgba(255,250,240,0.70);
       margin-bottom: 24px;
       font-size: 17px;
     }
 
     .consultant-grid { grid-template-columns: repeat(3, 1fr); }
 
-    .faq-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .faq-item {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
+    .faq-grid { grid-template-columns: 1fr 1fr; }
 
     .faq-item h3 {
       font-size: 17px;
       margin-bottom: 8px;
-    }
-
-    .faq-item p {
-      color: var(--muted);
-      font-size: 14px;
+      letter-spacing: 0;
     }
 
     .final-cta {
-      max-width: var(--max);
+      max-width: none;
       margin: 0 auto;
-      padding: 80px var(--pad);
+      padding: 104px var(--pad);
       text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(134,216,200,0.14), transparent 30%),
+        linear-gradient(180deg, #0d1420, #08101b);
+      border-top: 1px solid rgba(255,250,240,0.10);
     }
 
     .final-cta h2 {
-      font-size: 48px;
-      line-height: 1.08;
-      margin-bottom: 14px;
+      font-family: var(--serif);
+      font-size: 62px;
+      font-weight: 700;
+      line-height: 1.02;
+      margin-bottom: 16px;
+      letter-spacing: 0;
     }
 
     .final-cta p {
       color: var(--body);
       font-size: 18px;
-      max-width: 660px;
-      margin: 0 auto 28px;
+      max-width: 680px;
+      margin: 0 auto 30px;
     }
 
     footer {
-      border-top: 1px solid var(--line);
-      background: var(--surface);
+      border-top: 1px solid rgba(255,250,240,0.10);
+      background: #070d16;
     }
 
     .footer-inner {
@@ -637,6 +618,15 @@
       font-size: 14px;
     }
 
+    footer .logo {
+      color: #fffaf0;
+    }
+
+    footer .logo img {
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
     .footer-links {
       display: flex;
       gap: 18px;
@@ -647,11 +637,14 @@
     .footer-links a {
       text-decoration: none;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     @media (max-width: 980px) {
-      .nav { flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; }
+      .hero-shell {
+        padding: 24px 24px 0;
+      }
+      .nav { flex-wrap: wrap; }
       .menu-button { display: block; margin-left: auto; }
       .nav-links, .nav-actions {
         display: none;
@@ -662,7 +655,7 @@
         order: 3;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 10px;
         padding-top: 14px;
       }
       .nav-actions {
@@ -671,128 +664,387 @@
       }
       .hero {
         grid-template-columns: 1fr;
-        padding-top: 54px;
+        min-height: auto;
+        padding: 82px 0 220px;
       }
-      .hero h1 { font-size: 50px; }
-      .stat-strip, .outcomes-grid, .process-grid, .consultant-grid {
+      .hero h1 {
+        font-size: 72px;
+      }
+      .hero-stats {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 28px;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: none;
+      }
+      .outcomes-grid,
+      .process-grid,
+      .consultant-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .services-grid, .split, .consultant-inner, .section-header {
+      .services-grid,
+      .split,
+      .consultant-inner,
+      .section-header {
         grid-template-columns: 1fr;
       }
-      .process-step:nth-child(2) { border-right: 0; }
-      .process-step:nth-child(1), .process-step:nth-child(2) { border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
     }
 
     @media (max-width: 640px) {
       :root { --pad: 20px; }
-      .hero h1 { font-size: 40px; }
+      .hero-shell { padding: 20px 20px 0; }
+      .logo span { font-size: 15px; }
+      .hero {
+        display: block;
+        padding: 108px 0 28px;
+      }
+      .hero h1 {
+        max-width: 320px;
+        font-size: 31px;
+        line-height: 1.02;
+      }
+      .hero-copy {
+        width: 300px;
+        max-width: 100%;
+      }
+      .section-title,
+      .consultant-inner h2 {
+        font-size: 38px;
+      }
+      .final-cta h2 {
+        font-size: 40px;
+      }
       .hero-copy, .section-lede, .consultant-inner p, .final-cta p { font-size: 16px; }
-      .section-title, .consultant-inner h2, .final-cta h2 { font-size: 34px; }
-      .stat-strip, .outcomes-grid, .process-grid, .services-grid, .consultant-grid, .faq-grid, .board-checks {
-        grid-template-columns: 1fr;
-      }
-      .process-step, .process-step:nth-child(2) {
-        border-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-      }
-      .process-step:last-child { border-bottom: 0; }
-      .board-check { border-right: 0; border-bottom: 1px solid var(--line); }
-      .board-check:last-child { border-bottom: 0; }
-      .board-badge { white-space: normal; }
-      .candidate-row { grid-template-columns: 1fr; }
-      .candidate-meta { align-items: flex-start; }
       .hero-actions, .nav-actions.open { flex-direction: column; align-items: stretch; }
       .btn { width: 100%; }
+      .stamp { display: none; }
+      .hero-stats {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin: 0 0 28px;
+      }
+      .hero-stats,
+      .outcomes-grid,
+      .process-grid,
+      .services-grid,
+      .consultant-grid,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .section,
+      .consultant-inner,
+      .final-cta {
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; }
+    }
+
+    /* Bright premium consulting system */
+    body {
+      background: #ffffff;
+      color: #172033;
+    }
+
+    .hero-shell {
+      min-height: auto;
+      padding-bottom: 0;
+      background:
+        linear-gradient(90deg, rgba(10, 37, 64, 0.94) 0%, rgba(10, 37, 64, 0.72) 54%, rgba(10, 37, 64, 0.34) 100%),
+        url("https://images.unsplash.com/photo-1754538917023-8e4299a51ab0?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .hero {
+      min-height: calc(100vh - 96px);
+      padding-bottom: 118px;
+    }
+
+    .hero-stats {
+      position: relative;
+      left: auto;
+      right: auto;
+      bottom: auto;
+      z-index: 4;
+      max-width: 1280px;
+      margin: -56px auto 0;
+      background: #ffffff;
+      border: 1px solid #e5eaf0;
+      box-shadow: 0 24px 70px rgba(10, 37, 64, 0.12);
+      gap: 0;
+    }
+
+    .stat {
+      background: #ffffff;
+      border-right: 1px solid #e5eaf0;
+      backdrop-filter: none;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      color: #0a2540;
+    }
+
+    .stat span {
+      color: #5b667a;
+    }
+
+    .section,
+    .consultant-callout {
+      background: #ffffff;
+      color: #172033;
+      border-top: 1px solid #e5eaf0;
+      border-bottom: 0;
+      margin: 0;
+    }
+
+    .dark-band {
+      color: #fffaf0;
+      background: linear-gradient(135deg, #0a2540, #123856);
+      border-top: 0;
+      border-bottom: 0;
+      margin: 0;
+    }
+
+    .dark-band .section {
+      background: transparent;
+      color: #fffaf0;
+      border-top: 0;
+    }
+
+    .section:nth-of-type(even) {
+      background: #f7f9fc;
+    }
+
+    .section-header {
+      gap: 64px;
+      margin-bottom: 54px;
+    }
+
+    .section-kicker,
+    .dark-band .section-kicker {
+      color: #295b89;
+    }
+
+    .section-title,
+    .consultant-callout .section-title {
+      color: #172033;
+      font-size: 58px;
+    }
+
+    .dark-band .section-title {
+      color: #fffaf0;
+      font-size: 58px;
+    }
+
+    .section-lede,
+    .consultant-inner p,
+    .final-cta p {
+      color: #5b667a;
+    }
+
+    .dark-band .section-lede {
+      color: rgba(255,250,240,0.72);
+    }
+
+    .outcomes-grid,
+    .services-grid,
+    .consultant-grid,
+    .faq-grid,
+    .process-grid,
+    .split {
+      border: 0;
+      gap: 18px;
+      background: transparent;
+    }
+
+    .outcome,
+    .service,
+    .consultant-benefit,
+    .faq-item,
+    .module-panel,
+    .request-panel {
+      background: #ffffff;
+      border: 1px solid #e5eaf0;
+      border-radius: 8px;
+      box-shadow: 0 18px 44px rgba(10, 37, 64, 0.06);
+    }
+
+    .process-step {
+      background: rgba(255,250,240,0.08);
+      border: 1px solid rgba(255,250,240,0.16);
+      border-radius: 8px;
+      box-shadow: none;
+    }
+
+    .outcome small,
+    .service small,
+    .consultant-benefit small,
+    .process-step small {
+      color: #295b89;
+    }
+
+    .outcome p,
+    .service p,
+    .consultant-benefit p,
+    .faq-item p,
+    .process-step p,
+    .dark-band .process-step p {
+      color: #5b667a;
+    }
+
+    .dark-band .process-step p {
+      color: rgba(255,250,240,0.68);
+    }
+
+    .module-list span,
+    .tag {
+      background: #eef5fb;
+      color: #295b89;
+      border: 1px solid #d8e6f2;
+    }
+
+    .request-list li,
+    .service ul {
+      color: #5b667a;
+    }
+
+    .service li,
+    .request-list li {
+      border-color: #e5eaf0;
+    }
+
+    .service .btn {
+      background: #ffffff;
+      color: #0a2540;
+      border-color: #d8e0ea;
+    }
+
+    .consultant-callout {
+      background: #f7f9fc;
+    }
+
+    .btn-dark {
+      background: #0a2540;
+      color: #ffffff;
+    }
+
+    .final-cta {
+      color: #fffaf0;
+      background:
+        linear-gradient(135deg, rgba(10, 37, 64, 0.98), rgba(13, 49, 82, 0.96));
+      border-top: 0;
+    }
+
+    .final-cta h2 {
+      color: #fffaf0;
+    }
+
+    .final-cta p {
+      color: rgba(255,250,240,0.76);
+    }
+
+    .final-cta .btn {
+      border-color: rgba(255,250,240,0.22);
+    }
+
+    footer {
+      background: #ffffff;
+      border-top: 1px solid #e5eaf0;
+    }
+
+    footer .logo,
+    .footer-links a {
+      color: #172033;
+    }
+
+    .footer-inner {
+      color: #5b667a;
+    }
+
+    @media (max-width: 980px) {
+      .hero-stats {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin: -38px 24px 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-bottom: 70px;
+      }
+      .hero-stats {
+        margin: 0 20px;
+      }
+      .section-title,
+      .dark-band .section-title,
+      .consultant-callout .section-title {
+        font-size: 38px;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="logo" href="index.html" aria-label="BridgeLine Health home">
-        <span class="logo-mark">BL</span>
-        <span>BridgeLine Health</span>
-      </a>
-      <button class="menu-button" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#outcomes">Hospitals</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#modules">Modules</a></li>
-        <li><a href="consultants.html">Consultants</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a class="btn btn-secondary" href="consultants.html">For consultants</a>
-        <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need">Send a staffing need</a>
-      </div>
-    </nav>
-  </header>
-
   <main>
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Founded by former Epic operators</div>
-        <h1>Epic consulting teams, matched in days.</h1>
-        <p class="hero-copy">BridgeLine Health helps hospitals fill Epic implementation, optimization, go-live, upgrade, and backfill gaps with vetted consultants who match the exact module, workflow, and timeline.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">Get a shortlist</a>
-          <a class="btn btn-secondary" href="#process">See how vetting works</a>
-        </div>
-        <div class="mini-proof" aria-label="BridgeLine Health proof points">
-          <span>3-5 day first shortlist</span>
-          <span>Epic-specific screens</span>
-          <span>W-2 and 1099 bench</span>
-          <span>Founder-led intake</span>
-        </div>
-      </div>
+    <section class="hero-shell">
+      <header class="site-header">
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="logo" href="index.html" aria-label="BridgeLine Health home">
+            <img src="logo2.jpg" alt="BridgeLine Health logo">
+            <span>BridgeLine Health</span>
+          </a>
+          <button class="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="nav-links">
+            <li><a href="#outcomes">Hospitals</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="consultants.html">Consultants</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+          <div class="nav-actions">
+            <a class="btn btn-secondary" href="consultants.html">For consultants</a>
+            <a class="btn btn-light" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need">Send a staffing need</a>
+          </div>
+        </nav>
+      </header>
 
-      <aside class="ops-board" aria-label="Example Epic consultant shortlist">
-        <div class="board-top">
-          <div>
-            <h2>Shortlist preview</h2>
-            <p>Example output after intake for an urgent Epic go-live support request.</p>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Founded by former Epic operators</div>
+          <h1>Epic consulting teams, matched in days.</h1>
+          <p class="hero-copy">BridgeLine Health helps hospitals fill Epic implementation, optimization, go-live, upgrade, and backfill gaps with vetted consultants who match the exact module, workflow, and timeline.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">Get a shortlist</a>
+            <a class="btn btn-secondary" href="#process">See how vetting works</a>
           </div>
-          <span class="board-badge">Ready to review</span>
-        </div>
-        <div class="candidate-row">
-          <div class="candidate-main">
-            <strong>ASAP Application Analyst</strong>
-            <span>Emergency department build, cutover, and issue triage.</span>
+          <div class="mini-proof" aria-label="BridgeLine Health proof points">
+            <span>3-5 day first shortlist</span>
+            <span>Epic-specific screens</span>
+            <span>W-2 and 1099 bench</span>
+            <span>Founder-led intake</span>
           </div>
-          <div class="candidate-meta"><span class="pill">7 yrs Epic</span><span>Available in 10 days</span></div>
         </div>
-        <div class="candidate-row">
-          <div class="candidate-main">
-            <strong>Willow Principal Trainer</strong>
-            <span>Pharmacy training buildout, super-user prep, and activation support.</span>
-          </div>
-          <div class="candidate-meta"><span class="pill">Certified</span><span>Hybrid ready</span></div>
-        </div>
-        <div class="candidate-row">
-          <div class="candidate-main">
-            <strong>Resolute PB Build Lead</strong>
-            <span>Professional billing workqueues, testing, and team coaching.</span>
-          </div>
-          <div class="candidate-meta"><span class="pill">RCM focus</span><span>Remote ready</span></div>
-        </div>
-        <div class="board-checks">
-          <div class="board-check"><strong>Screened</strong> Technical review by Epic-experienced operators.</div>
-          <div class="board-check"><strong>Scoped</strong> Matched to timeline, module, and workstream.</div>
-          <div class="board-check"><strong>Briefed</strong> Submitted with availability, rate, and fit notes.</div>
-        </div>
-      </aside>
-    </section>
 
-    <section class="stat-strip" aria-label="BridgeLine Health metrics">
-      <div class="stat"><strong>3-5d</strong><span>Typical first qualified shortlist after intake.</span></div>
-      <div class="stat"><strong>8+ yrs</strong><span>Average Epic experience across our active bench.</span></div>
-      <div class="stat"><strong>100%</strong><span>Candidate screens tied to real Epic work, not keyword matching.</span></div>
-      <div class="stat"><strong>All major</strong><span>Clinical, revenue cycle, access, and analytics modules supported.</span></div>
+        <div></div>
+      </section>
+
+      <section class="hero-stats" aria-label="BridgeLine Health metrics">
+        <div class="stat"><strong>3-5d</strong><span>Typical first qualified shortlist after intake.</span></div>
+        <div class="stat"><strong>8+ yrs</strong><span>Average Epic experience across our active bench.</span></div>
+        <div class="stat"><strong>100%</strong><span>Candidate screens tied to real Epic work, not keyword matching.</span></div>
+        <div class="stat"><strong>All major</strong><span>Clinical, revenue cycle, access, and analytics modules supported.</span></div>
+      </section>
     </section>
 
     <section class="section" id="outcomes">
@@ -907,7 +1159,7 @@
             <li>Remote, hybrid, and onsite options</li>
             <li>W-2 and 1099 structures</li>
           </ul>
-          <a class="btn btn-secondary" href="mailto:inquiries@bridgeline.health?subject=Contract%20Epic%20Staffing">Discuss scope</a>
+          <a class="btn" href="mailto:inquiries@bridgeline.health?subject=Contract%20Epic%20Staffing">Discuss scope</a>
         </article>
         <article class="service">
           <small>For team rebuilds</small>
@@ -918,7 +1170,7 @@
             <li>Conversion terms discussed upfront</li>
             <li>Fit check before long-term commitment</li>
           </ul>
-          <a class="btn btn-secondary" href="mailto:inquiries@bridgeline.health?subject=Contract-to-Hire%20Epic%20Support">Discuss scope</a>
+          <a class="btn" href="mailto:inquiries@bridgeline.health?subject=Contract-to-Hire%20Epic%20Support">Discuss scope</a>
         </article>
         <article class="service">
           <small>Before hiring</small>
@@ -929,7 +1181,7 @@
             <li>Go-live readiness scoring</li>
             <li>Build versus buy recommendation</li>
           </ul>
-          <a class="btn btn-secondary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Advisory%20Assessment">Discuss scope</a>
+          <a class="btn" href="mailto:inquiries@bridgeline.health?subject=Epic%20Advisory%20Assessment">Discuss scope</a>
         </article>
       </div>
     </section>
@@ -1003,7 +1255,7 @@
       <p>Send the module, timeline, work model, and what is at risk. We will tell you quickly whether BridgeLine can help.</p>
       <div class="hero-actions" style="justify-content:center;margin-bottom:0;">
         <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">Send a staffing need</a>
-        <a class="btn btn-secondary" href="consultants.html">I am an Epic consultant</a>
+        <a class="btn btn-light" href="consultants.html">I am an Epic consultant</a>
       </div>
     </section>
   </main>
@@ -1011,7 +1263,7 @@
   <footer>
     <div class="footer-inner">
       <a class="logo" href="index.html" aria-label="BridgeLine Health home">
-        <span class="logo-mark">BL</span>
+        <img src="logo2.jpg" alt="BridgeLine Health logo">
         <span>BridgeLine Health</span>
       </a>
       <ul class="footer-links">
