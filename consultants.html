@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Join BridgeLine Health's Epic consultant bench for transparent rates, weekly pay, and matched Epic implementation, go-live, optimization, and training roles.">
+  <title>BridgeLine Health | For Epic Consultants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-strong: #f1f7f5;
+      --ink: #14213d;
+      --body: #334155;
+      --muted: #64748b;
+      --line: #dbe4ee;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #b7791f;
+      --max: 1120px;
+      --pad: 32px;
+      --radius: 8px;
+      --shadow: 0 18px 60px rgba(15, 23, 42, 0.10);
+      --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(247, 249, 252, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: var(--max);
+      min-height: 72px;
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .logo span:last-child {
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      list-style: none;
+      flex: 1;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--body);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--teal); color: #ffffff; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.18); }
+    .btn-primary:hover { background: #0b625c; }
+    .btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+    .btn-secondary:hover { box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08); }
+    .btn-dark { background: var(--ink); color: #ffffff; }
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    .hero {
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+      padding: 78px var(--pad) 58px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .hero > *,
+    .section > * {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    h1 {
+      font-size: 60px;
+      line-height: 1.04;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+      max-width: 700px;
+    }
+
+    .hero-copy {
+      color: var(--body);
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .profile-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .profile-top {
+      padding: 24px;
+      background: var(--surface-strong);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .profile-top h2 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .profile-top p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+      padding: 17px 24px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .profile-row:last-child { border-bottom: 0; }
+    .profile-row strong { color: var(--ink); }
+    .profile-row span { color: var(--body); }
+
+    .proof-strip {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad) 72px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .proof {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .proof strong {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .proof span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px var(--pad);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 44px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: 42px;
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+
+    .section-lede {
+      color: var(--body);
+      font-size: 17px;
+      max-width: 720px;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .benefit {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .benefit small {
+      display: block;
+      color: var(--teal);
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .benefit h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .benefit p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .dark-band {
+      background: var(--ink);
+      color: #ffffff;
+      margin: 24px 0;
+    }
+
+    .dark-band .section-title,
+    .dark-band .section-kicker { color: #ffffff; }
+    .dark-band .section-lede { color: rgba(255, 255, 255, 0.74); }
+
+    .fit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .fit-panel {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .fit-panel h3 {
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .fit-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fit-list li {
+      display: flex;
+      gap: 10px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 14px;
+    }
+
+    .fit-list li::before {
+      content: "+";
+      color: #8fd6c6;
+      font-weight: 800;
+    }
+
+    .fit-list.muted li::before {
+      content: "-";
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .roles-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .roles-table th,
+    .roles-table td {
+      text-align: left;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    .roles-table th {
+      background: var(--surface-strong);
+      color: var(--body);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .roles-table tr:last-child td { border-bottom: 0; }
+    .roles-table strong { display: block; color: var(--ink); margin-bottom: 3px; }
+    .roles-table span { color: var(--muted); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      background: #eef6ff;
+      color: #1e3a8a;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 800;
+      margin: 2px 2px 2px 0;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .step small {
+      display: block;
+      color: var(--teal);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .step h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .final-cta {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 80px var(--pad);
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: 46px;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .final-cta p {
+      color: var(--body);
+      font-size: 18px;
+      max-width: 680px;
+      margin: 0 auto 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 30px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    @media (max-width: 940px) {
+      .nav { flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; }
+      .menu-button { display: block; margin-left: auto; }
+      .nav-links, .nav-actions {
+        display: none;
+        width: 100%;
+      }
+      .nav-links.open, .nav-actions.open { display: flex; }
+      .nav-links {
+        order: 3;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-top: 14px;
+      }
+      .nav-actions {
+        order: 4;
+        padding-top: 12px;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 54px;
+      }
+      h1 { font-size: 48px; }
+      .proof-strip,
+      .benefit-grid,
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .section-header,
+      .fit-grid {
+        grid-template-columns: 1fr;
+      }
+      .roles-table { display: block; overflow-x: auto; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --pad: 20px; }
+      h1 { font-size: 39px; }
+      .hero-copy, .section-lede, .final-cta p { font-size: 16px; }
+      .section-title, .final-cta h2 { font-size: 34px; }
+      .proof-strip,
+      .benefit-grid,
+      .steps,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .profile-row { grid-template-columns: 1fr; gap: 4px; }
+      .hero-actions, .nav-actions.open { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="logo" href="index.html" aria-label="BridgeLine Health home">
+        <span class="logo-mark">BL</span>
+        <span>BridgeLine Health</span>
+      </a>
+      <button class="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Hospitals</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#fit">Fit</a></li>
+        <li><a href="#roles">Roles</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="index.html">For hospitals</a>
+        <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Consultant%20Bench%20Application&body=Name%3A%0AEpic%20modules%2Fcertifications%3A%0AYears%20of%20Epic%20experience%3A%0AWork%20preference%20(remote%2Fhybrid%2Fonsite)%3A%0AAvailability%3A%0ALinkedIn%20or%20resume%3A">Join the bench</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">For Epic consultants</div>
+        <h1>Epic consulting work without the recruiter noise.</h1>
+        <p class="hero-copy">BridgeLine connects Epic analysts, trainers, build leads, PMs, and go-live consultants with matched health-system work. You get transparent rates, weekly pay, direct founder communication, and submissions that actually fit your module and work preferences.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Consultant%20Bench%20Application&body=Name%3A%0AEpic%20modules%2Fcertifications%3A%0AYears%20of%20Epic%20experience%3A%0AWork%20preference%20(remote%2Fhybrid%2Fonsite)%3A%0AAvailability%3A%0ALinkedIn%20or%20resume%3A">Send your profile</a>
+          <a class="btn btn-secondary" href="#fit">Check fit criteria</a>
+        </div>
+      </div>
+
+      <aside class="profile-panel" aria-label="Example consultant profile">
+        <div class="profile-top">
+          <h2>Bench profile</h2>
+          <p>What we capture so the right roles reach you first.</p>
+        </div>
+        <div class="profile-row"><strong>Modules</strong><span>ASAP, Willow, Resolute PB, Ambulatory, Clarity</span></div>
+        <div class="profile-row"><strong>Role type</strong><span>Analyst, build lead, principal trainer, project manager</span></div>
+        <div class="profile-row"><strong>Work model</strong><span>Remote, hybrid, onsite go-live windows</span></div>
+        <div class="profile-row"><strong>Availability</strong><span>Start date, travel limits, rate range, contract preference</span></div>
+        <div class="profile-row"><strong>Submission</strong><span>Only when module, timeline, rate, and fit are aligned</span></div>
+      </aside>
+    </section>
+
+    <section class="proof-strip" aria-label="Consultant benefits">
+      <div class="proof"><strong>Weekly</strong><span>Pay cadence for active engagements.</span></div>
+      <div class="proof"><strong>W-2 / 1099</strong><span>Flexible structures depending on role and client.</span></div>
+      <div class="proof"><strong>2 days</strong><span>Typical response time after profile submission.</span></div>
+      <div class="proof"><strong>No spam</strong><span>We do not blast your resume into mismatched roles.</span></div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="section-header">
+        <div class="section-kicker">Why consultants join</div>
+        <div>
+          <h2 class="section-title">You should know the role, rate, and fit before your name is submitted.</h2>
+          <p class="section-lede">BridgeLine was built for experienced Epic people who are tired of vague job blasts, unclear rates, and recruiters who cannot tell the difference between classroom exposure and production build.</p>
+        </div>
+      </div>
+      <div class="benefit-grid">
+        <article class="benefit">
+          <small>Pay</small>
+          <h3>Transparent rates</h3>
+          <p>We discuss expected rate range before submission so there are fewer surprises after the client call.</p>
+        </article>
+        <article class="benefit">
+          <small>Timing</small>
+          <h3>Weekly pay</h3>
+          <p>Active consultants are paid weekly. No net-90 waiting game for work already completed.</p>
+        </article>
+        <article class="benefit">
+          <small>Matching</small>
+          <h3>Fewer bad fits</h3>
+          <p>Your module, work model, availability, travel preference, and contract structure shape the search.</p>
+        </article>
+        <article class="benefit">
+          <small>Advocacy</small>
+          <h3>Direct communication</h3>
+          <p>You work with BridgeLine directly, with clear client context and honest feedback when we have it.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="dark-band" id="fit">
+      <div class="section">
+        <div class="section-header">
+          <div class="section-kicker">Fit criteria</div>
+          <div>
+            <h2 class="section-title">A strong BridgeLine profile has Epic depth and real delivery experience.</h2>
+            <p class="section-lede">You do not need to be available today. We keep an active bench and reach out when the work fits.</p>
+          </div>
+        </div>
+        <div class="fit-grid">
+          <div class="fit-panel">
+            <h3>Strong fit</h3>
+            <ul class="fit-list">
+              <li>Epic certification or credential in one or more modules</li>
+              <li>Production build, implementation, optimization, or support experience</li>
+              <li>At least one go-live, upgrade, training rollout, or major workstream</li>
+              <li>Clear work model preferences: remote, hybrid, onsite, or travel windows</li>
+              <li>Open to contract, contract-to-hire, or longer consulting engagements</li>
+            </ul>
+          </div>
+          <div class="fit-panel">
+            <h3>Not a fit yet</h3>
+            <ul class="fit-list muted">
+              <li>Healthcare IT experience but no Epic exposure</li>
+              <li>Classroom-only exposure without production or client work</li>
+              <li>Other EHR experience only, such as Cerner, MEDITECH, or Allscripts</li>
+              <li>Looking for initial Epic certification sponsorship</li>
+              <li>Unable to provide module, role, or project details for screening</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roles">
+      <div class="section-header">
+        <div class="section-kicker">Roles we place</div>
+        <div>
+          <h2 class="section-title">From build work to go-live floors, we match the work to the person.</h2>
+          <p class="section-lede">BridgeLine supports clinical, revenue cycle, access, reporting, and training workstreams across major Epic modules.</p>
+        </div>
+      </div>
+      <table class="roles-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Common work</th>
+            <th>Work model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Application Analyst</strong><span>Module build and support</span></td>
+            <td>Configuration, testing, workqueues, validation, issue triage, optimization</td>
+            <td><span class="tag">Remote</span><span class="tag">Hybrid</span></td>
+          </tr>
+          <tr>
+            <td><strong>Principal Trainer</strong><span>Training strategy and delivery</span></td>
+            <td>Curriculum, classroom delivery, super-user support, training readiness</td>
+            <td><span class="tag">Hybrid</span><span class="tag">Onsite</span></td>
+          </tr>
+          <tr>
+            <td><strong>Credentialed Trainer</strong><span>End-user training</span></td>
+            <td>Classroom training, workflow education, optimization training, elbow support</td>
+            <td><span class="tag">Remote</span><span class="tag">Onsite</span></td>
+          </tr>
+          <tr>
+            <td><strong>At-the-Elbow Support</strong><span>Activation support</span></td>
+            <td>Go-live floor support, workflow guidance, issue escalation, end-user support</td>
+            <td><span class="tag">Onsite</span></td>
+          </tr>
+          <tr>
+            <td><strong>Build Lead / PM</strong><span>Workstream leadership</span></td>
+            <td>Milestone tracking, stakeholder updates, team coordination, readiness planning</td>
+            <td><span class="tag">Remote</span><span class="tag">Hybrid</span><span class="tag">Onsite</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="process">
+      <div class="section-header">
+        <div class="section-kicker">How it works</div>
+        <div>
+          <h2 class="section-title">A bench process that respects your time.</h2>
+          <p class="section-lede">The goal is not to add you to a black hole database. It is to understand your real Epic background and call when we have a relevant role.</p>
+        </div>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <small>01</small>
+          <h3>Send profile</h3>
+          <p>Email your resume or LinkedIn with modules, certifications, availability, and work preferences.</p>
+        </article>
+        <article class="step">
+          <small>02</small>
+          <h3>Bench screen</h3>
+          <p>We clarify Epic experience, role fit, rate expectations, and preferred engagement type.</p>
+        </article>
+        <article class="step">
+          <small>03</small>
+          <h3>Role match</h3>
+          <p>When a client need fits, we confirm interest before submitting your profile.</p>
+        </article>
+        <article class="step">
+          <small>04</small>
+          <h3>Start cleanly</h3>
+          <p>We coordinate onboarding, schedule, pay structure, and early feedback once the engagement starts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-header">
+        <div class="section-kicker">FAQ</div>
+        <div>
+          <h2 class="section-title">Questions from consultants.</h2>
+          <p class="section-lede">If your situation is unusual, send it anyway. We will tell you clearly whether it fits the current bench.</p>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>Do you offer W-2 or 1099?</h3>
+          <p>Both are possible depending on the client, engagement, and consultant preference.</p>
+        </article>
+        <article class="faq-item">
+          <h3>How quickly will I hear back?</h3>
+          <p>We aim to respond within two business days after receiving your profile and module details.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Will you submit me without asking?</h3>
+          <p>No. We confirm role fit, rate expectations, work model, and interest before submission.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do you sponsor initial Epic certifications?</h3>
+          <p>Not currently. The best fit is someone with existing Epic credentials or meaningful production experience.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What if I am not available right now?</h3>
+          <p>That is fine. We track future availability and reach out when the timing and role fit.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I stay remote-only?</h3>
+          <p>Yes, tell us your preference. We staff remote, hybrid, and onsite roles and will filter accordingly.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Ready for better-matched Epic work?</h2>
+      <p>Send your modules, certifications, resume or LinkedIn, availability, and preferred work model. We will respond with next steps or keep you warm for the right opening.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Consultant%20Bench%20Application&body=Name%3A%0AEpic%20modules%2Fcertifications%3A%0AYears%20of%20Epic%20experience%3A%0AWork%20preference%20(remote%2Fhybrid%2Fonsite)%3A%0AAvailability%3A%0ALinkedIn%20or%20resume%3A">Send your profile</a>
+        <a class="btn btn-secondary" href="index.html">For healthcare organizations</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="index.html" aria-label="BridgeLine Health home">
+        <span class="logo-mark">BL</span>
+        <span>BridgeLine Health</span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="index.html">Hospitals</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#fit">Fit</a></li>
+        <li><a href="mailto:inquiries@bridgeline.health">Contact</a></li>
+      </ul>
+      <span>&copy; 2026 BridgeLine Health</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navActions = document.querySelector('.nav-actions');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navActions.classList.toggle('open', isOpen);
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navActions.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>

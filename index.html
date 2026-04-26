@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BridgeLine Health places vetted Epic consultants for health-system implementations, optimizations, go-lives, upgrades, and backfill.">
+  <title>BridgeLine Health | Epic Consulting Talent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-strong: #edf4f2;
+      --ink: #14213d;
+      --body: #334155;
+      --muted: #64748b;
+      --line: #dbe4ee;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #b7791f;
+      --rose: #a43b48;
+      --max: 1180px;
+      --pad: 32px;
+      --radius: 8px;
+      --shadow: 0 18px 60px rgba(15, 23, 42, 0.10);
+      --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(247, 249, 252, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: var(--max);
+      min-height: 72px;
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--ink);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .logo span:last-child {
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      list-style: none;
+      flex: 1;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--body);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--teal); color: #ffffff; box-shadow: 0 12px 24px rgba(15, 118, 110, 0.18); }
+    .btn-primary:hover { background: #0b625c; }
+    .btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line); }
+    .btn-secondary:hover { box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08); }
+    .btn-dark { background: var(--ink); color: #ffffff; }
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      margin: 5px 0;
+      border-radius: 2px;
+    }
+
+    .hero {
+      max-width: var(--max);
+      width: 100%;
+      margin: 0 auto;
+      padding: 80px var(--pad) 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .hero > *,
+    .section > *,
+    .consultant-inner > * {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1.03;
+      letter-spacing: 0;
+      max-width: 720px;
+      margin-bottom: 22px;
+    }
+
+    .hero-copy {
+      font-size: 19px;
+      color: var(--body);
+      max-width: 640px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .mini-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .mini-proof span {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+
+    .ops-board {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .board-top {
+      padding: 22px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      background: var(--surface-strong);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .board-top h2 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .board-top p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .board-badge {
+      color: #ffffff;
+      background: var(--teal);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .candidate-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .candidate-row:last-child { border-bottom: 0; }
+
+    .candidate-main strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .candidate-main span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .candidate-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--body);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #eef6ff;
+      color: var(--blue);
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .board-checks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+
+    .board-check {
+      padding: 16px;
+      border-right: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--body);
+    }
+
+    .board-check:last-child { border-right: 0; }
+    .board-check strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+
+    .stat-strip {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad) 72px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px var(--pad);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 44px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: 42px;
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+
+    .section-lede {
+      color: var(--body);
+      font-size: 17px;
+      max-width: 720px;
+    }
+
+    .outcomes-grid,
+    .services-grid,
+    .consultant-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .outcome,
+    .service,
+    .consultant-benefit {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .outcome small,
+    .service small,
+    .consultant-benefit small {
+      display: block;
+      color: var(--teal);
+      font-weight: 800;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .outcome h3,
+    .service h3,
+    .consultant-benefit h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .outcome p,
+    .service p,
+    .consultant-benefit p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .dark-band {
+      background: var(--ink);
+      color: #ffffff;
+      margin: 24px 0;
+    }
+
+    .dark-band .section-title,
+    .dark-band .section-kicker { color: #ffffff; }
+    .dark-band .section-lede { color: rgba(255, 255, 255, 0.74); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .process-step {
+      padding: 26px;
+      border-right: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .process-step:last-child { border-right: 0; }
+
+    .process-step small {
+      color: #8fd6c6;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .process-step h3 {
+      font-size: 22px;
+      margin: 18px 0 8px;
+    }
+
+    .process-step p {
+      color: rgba(255, 255, 255, 0.70);
+      font-size: 14px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .module-panel,
+    .request-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .module-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .module-list span {
+      background: #eef6ff;
+      color: #1e3a8a;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .request-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 16px;
+    }
+
+    .request-list li {
+      display: flex;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--body);
+      font-size: 14px;
+    }
+
+    .request-list li:last-child { border-bottom: 0; }
+    .request-list li::before { content: "+"; color: var(--teal); font-weight: 800; }
+
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .service {
+      display: flex;
+      flex-direction: column;
+      min-height: 290px;
+    }
+
+    .service ul {
+      margin: 20px 0 24px;
+      padding: 0;
+      list-style: none;
+      color: var(--body);
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .service li {
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .service a {
+      align-self: flex-start;
+    }
+
+    .consultant-callout {
+      background: var(--surface-strong);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .consultant-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 72px var(--pad);
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .consultant-inner h2 {
+      font-size: 40px;
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .consultant-inner p {
+      color: var(--body);
+      margin-bottom: 24px;
+      font-size: 17px;
+    }
+
+    .consultant-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .faq-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .final-cta {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 80px var(--pad);
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: 48px;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .final-cta p {
+      color: var(--body);
+      font-size: 18px;
+      max-width: 660px;
+      margin: 0 auto 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 30px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    @media (max-width: 980px) {
+      .nav { flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; }
+      .menu-button { display: block; margin-left: auto; }
+      .nav-links, .nav-actions {
+        display: none;
+        width: 100%;
+      }
+      .nav-links.open, .nav-actions.open { display: flex; }
+      .nav-links {
+        order: 3;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-top: 14px;
+      }
+      .nav-actions {
+        order: 4;
+        padding-top: 12px;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 54px;
+      }
+      .hero h1 { font-size: 50px; }
+      .stat-strip, .outcomes-grid, .process-grid, .consultant-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .services-grid, .split, .consultant-inner, .section-header {
+        grid-template-columns: 1fr;
+      }
+      .process-step:nth-child(2) { border-right: 0; }
+      .process-step:nth-child(1), .process-step:nth-child(2) { border-bottom: 1px solid rgba(255, 255, 255, 0.16); }
+    }
+
+    @media (max-width: 640px) {
+      :root { --pad: 20px; }
+      .hero h1 { font-size: 40px; }
+      .hero-copy, .section-lede, .consultant-inner p, .final-cta p { font-size: 16px; }
+      .section-title, .consultant-inner h2, .final-cta h2 { font-size: 34px; }
+      .stat-strip, .outcomes-grid, .process-grid, .services-grid, .consultant-grid, .faq-grid, .board-checks {
+        grid-template-columns: 1fr;
+      }
+      .process-step, .process-step:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      }
+      .process-step:last-child { border-bottom: 0; }
+      .board-check { border-right: 0; border-bottom: 1px solid var(--line); }
+      .board-check:last-child { border-bottom: 0; }
+      .board-badge { white-space: normal; }
+      .candidate-row { grid-template-columns: 1fr; }
+      .candidate-meta { align-items: flex-start; }
+      .hero-actions, .nav-actions.open { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="logo" href="index.html" aria-label="BridgeLine Health home">
+        <span class="logo-mark">BL</span>
+        <span>BridgeLine Health</span>
+      </a>
+      <button class="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#outcomes">Hospitals</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#modules">Modules</a></li>
+        <li><a href="consultants.html">Consultants</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="consultants.html">For consultants</a>
+        <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need">Send a staffing need</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Founded by former Epic operators</div>
+        <h1>Epic consulting teams, matched in days.</h1>
+        <p class="hero-copy">BridgeLine Health helps hospitals fill Epic implementation, optimization, go-live, upgrade, and backfill gaps with vetted consultants who match the exact module, workflow, and timeline.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">Get a shortlist</a>
+          <a class="btn btn-secondary" href="#process">See how vetting works</a>
+        </div>
+        <div class="mini-proof" aria-label="BridgeLine Health proof points">
+          <span>3-5 day first shortlist</span>
+          <span>Epic-specific screens</span>
+          <span>W-2 and 1099 bench</span>
+          <span>Founder-led intake</span>
+        </div>
+      </div>
+
+      <aside class="ops-board" aria-label="Example Epic consultant shortlist">
+        <div class="board-top">
+          <div>
+            <h2>Shortlist preview</h2>
+            <p>Example output after intake for an urgent Epic go-live support request.</p>
+          </div>
+          <span class="board-badge">Ready to review</span>
+        </div>
+        <div class="candidate-row">
+          <div class="candidate-main">
+            <strong>ASAP Application Analyst</strong>
+            <span>Emergency department build, cutover, and issue triage.</span>
+          </div>
+          <div class="candidate-meta"><span class="pill">7 yrs Epic</span><span>Available in 10 days</span></div>
+        </div>
+        <div class="candidate-row">
+          <div class="candidate-main">
+            <strong>Willow Principal Trainer</strong>
+            <span>Pharmacy training buildout, super-user prep, and activation support.</span>
+          </div>
+          <div class="candidate-meta"><span class="pill">Certified</span><span>Hybrid ready</span></div>
+        </div>
+        <div class="candidate-row">
+          <div class="candidate-main">
+            <strong>Resolute PB Build Lead</strong>
+            <span>Professional billing workqueues, testing, and team coaching.</span>
+          </div>
+          <div class="candidate-meta"><span class="pill">RCM focus</span><span>Remote ready</span></div>
+        </div>
+        <div class="board-checks">
+          <div class="board-check"><strong>Screened</strong> Technical review by Epic-experienced operators.</div>
+          <div class="board-check"><strong>Scoped</strong> Matched to timeline, module, and workstream.</div>
+          <div class="board-check"><strong>Briefed</strong> Submitted with availability, rate, and fit notes.</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="stat-strip" aria-label="BridgeLine Health metrics">
+      <div class="stat"><strong>3-5d</strong><span>Typical first qualified shortlist after intake.</span></div>
+      <div class="stat"><strong>8+ yrs</strong><span>Average Epic experience across our active bench.</span></div>
+      <div class="stat"><strong>100%</strong><span>Candidate screens tied to real Epic work, not keyword matching.</span></div>
+      <div class="stat"><strong>All major</strong><span>Clinical, revenue cycle, access, and analytics modules supported.</span></div>
+    </section>
+
+    <section class="section" id="outcomes">
+      <div class="section-header">
+        <div class="section-kicker">For hospitals and health systems</div>
+        <div>
+          <h2 class="section-title">Fewer resume piles. Faster coverage where the build is exposed.</h2>
+          <p class="section-lede">BridgeLine is built for teams that cannot wait months for generic recruiting cycles. We focus on the moments when Epic timelines, go-live readiness, and internal bandwidth are under pressure.</p>
+        </div>
+      </div>
+      <div class="outcomes-grid">
+        <article class="outcome">
+          <small>01</small>
+          <h3>Fill urgent gaps</h3>
+          <p>Stand up module-specific coverage for go-live, backfill, training, and optimization workstreams.</p>
+        </article>
+        <article class="outcome">
+          <small>02</small>
+          <h3>Reduce ramp time</h3>
+          <p>See candidates who have lived similar builds, not people learning your workflow from scratch.</p>
+        </article>
+        <article class="outcome">
+          <small>03</small>
+          <h3>Clarify the role</h3>
+          <p>We help translate the request into the right role family before sourcing begins.</p>
+        </article>
+        <article class="outcome">
+          <small>04</small>
+          <h3>Protect the budget</h3>
+          <p>Rates, availability, work model, and conversion terms are surfaced early.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="dark-band" id="process">
+      <div class="section">
+        <div class="section-header">
+          <div class="section-kicker">Process</div>
+          <div>
+            <h2 class="section-title">A focused search process for Epic teams that are already moving.</h2>
+            <p class="section-lede">Every engagement starts with the workstream, not the resume. That keeps the shortlist small, relevant, and easier to approve.</p>
+          </div>
+        </div>
+        <div class="process-grid">
+          <article class="process-step">
+            <small>Step 01 / 24-48 hrs</small>
+            <h3>Intake</h3>
+            <p>Map module, version, timeline, team structure, location model, and what breaks if the role stays open.</p>
+          </article>
+          <article class="process-step">
+            <small>Step 02 / 3-5 days</small>
+            <h3>Match</h3>
+            <p>Search the bench for consultants with relevant production build, training, go-live, or RCM experience.</p>
+          </article>
+          <article class="process-step">
+            <small>Step 03 / Included</small>
+            <h3>Validate</h3>
+            <p>Run Epic-specific screens and submit concise fit notes with rates, availability, and constraints.</p>
+          </article>
+          <article class="process-step">
+            <small>Step 04 / Week 1</small>
+            <h3>Deploy</h3>
+            <p>Coordinate onboarding, credentials, expectations, and early check-ins so the consultant starts cleanly.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="modules">
+      <div class="section-header">
+        <div class="section-kicker">Modules and roles</div>
+        <div>
+          <h2 class="section-title">Clinical, revenue cycle, access, reporting, and training coverage.</h2>
+          <p class="section-lede">The first question is not "Who is available?" It is "What problem does this team need solved?" From there, we match the right module and role family.</p>
+        </div>
+      </div>
+      <div class="split">
+        <div class="module-panel">
+          <h3>Common modules</h3>
+          <div class="module-list">
+            <span>ASAP</span><span>Willow</span><span>Beaker</span><span>OpTime</span><span>Anesthesia</span><span>Cadence</span><span>Prelude</span><span>HIM</span><span>Cupid</span><span>Stork</span><span>Radiant</span><span>Resolute HB</span><span>Resolute PB</span><span>ClinDoc</span><span>Ambulatory</span><span>MyChart</span><span>Bridges</span><span>Clarity</span>
+          </div>
+        </div>
+        <div class="request-panel">
+          <h3>Roles we place</h3>
+          <ul class="request-list">
+            <li>Application analysts and build leads</li>
+            <li>Principal trainers and credentialed trainers</li>
+            <li>At-the-elbow go-live support</li>
+            <li>Project managers and workstream leads</li>
+            <li>Optimization, upgrade, and backfill consultants</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-header">
+        <div class="section-kicker">Engagement models</div>
+        <div>
+          <h2 class="section-title">Choose the model that matches the risk.</h2>
+          <p class="section-lede">Some teams need immediate contract coverage. Others need a future FTE, a readiness assessment, or help scoping the gap before hiring.</p>
+        </div>
+      </div>
+      <div class="services-grid">
+        <article class="service">
+          <small>Most common</small>
+          <h3>Contract staffing</h3>
+          <p>Module-specific consultants for implementation, go-live, optimization, upgrade, and backfill work.</p>
+          <ul>
+            <li>Typical 3-12 month engagements</li>
+            <li>Remote, hybrid, and onsite options</li>
+            <li>W-2 and 1099 structures</li>
+          </ul>
+          <a class="btn btn-secondary" href="mailto:inquiries@bridgeline.health?subject=Contract%20Epic%20Staffing">Discuss scope</a>
+        </article>
+        <article class="service">
+          <small>For team rebuilds</small>
+          <h3>Contract-to-hire</h3>
+          <p>Evaluate an Epic consultant in-seat before converting them into a permanent role.</p>
+          <ul>
+            <li>Useful after attrition or expansion</li>
+            <li>Conversion terms discussed upfront</li>
+            <li>Fit check before long-term commitment</li>
+          </ul>
+          <a class="btn btn-secondary" href="mailto:inquiries@bridgeline.health?subject=Contract-to-Hire%20Epic%20Support">Discuss scope</a>
+        </article>
+        <article class="service">
+          <small>Before hiring</small>
+          <h3>Advisory assessments</h3>
+          <p>Use an Epic-experienced reviewer to clarify team structure, readiness, and coverage gaps.</p>
+          <ul>
+            <li>Module coverage review</li>
+            <li>Go-live readiness scoring</li>
+            <li>Build versus buy recommendation</li>
+          </ul>
+          <a class="btn btn-secondary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Advisory%20Assessment">Discuss scope</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="consultant-callout" id="consultants">
+      <div class="consultant-inner">
+        <div>
+          <div class="section-kicker">For consultants</div>
+          <h2>Better Epic work starts with better matching.</h2>
+          <p>If you are an Epic analyst, trainer, build lead, or go-live consultant, BridgeLine gives you transparent rates, direct communication, and fewer irrelevant role blasts.</p>
+          <a class="btn btn-dark" href="consultants.html">Join the consultant bench</a>
+        </div>
+        <div class="consultant-grid">
+          <article class="consultant-benefit">
+            <small>Pay</small>
+            <h3>Weekly pay</h3>
+            <p>W-2 and 1099 options with rate expectations discussed before submission.</p>
+          </article>
+          <article class="consultant-benefit">
+            <small>Fit</small>
+            <h3>No role spam</h3>
+            <p>We submit you only when the module, work model, and experience fit.</p>
+          </article>
+          <article class="consultant-benefit">
+            <small>Advocacy</small>
+            <h3>Founder access</h3>
+            <p>You work with people who understand the difference between certs and real build.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-header">
+        <div class="section-kicker">FAQ</div>
+        <div>
+          <h2 class="section-title">Questions buyers ask before the first call.</h2>
+          <p class="section-lede">If the answer depends on module, urgency, or work model, we will tell you that directly during intake.</p>
+        </div>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>How fast can you send candidates?</h3>
+          <p>For well-scoped urgent needs, the first qualified shortlist is typically 3-5 days after intake.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do you cover all Epic modules?</h3>
+          <p>We support the major Epic ecosystem across clinical, revenue cycle, access, reporting, and training roles.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can you support go-lives?</h3>
+          <p>Yes. We place analysts, trainers, at-the-elbow support, project managers, and activation support roles.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Are rates transparent?</h3>
+          <p>Yes. We discuss rates, work model, availability, and conversion terms before submitting candidates.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do you place W-2 or 1099 consultants?</h3>
+          <p>Both. We structure engagements around client requirements and consultant preference where possible.</p>
+        </article>
+        <article class="faq-item">
+          <h3>How do we get started?</h3>
+          <p>Email <a href="mailto:inquiries@bridgeline.health">inquiries@bridgeline.health</a> with the module, timeline, role type, and what is at risk.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>Have an Epic gap that cannot wait?</h2>
+      <p>Send the module, timeline, work model, and what is at risk. We will tell you quickly whether BridgeLine can help.</p>
+      <div class="hero-actions" style="justify-content:center;margin-bottom:0;">
+        <a class="btn btn-primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">Send a staffing need</a>
+        <a class="btn btn-secondary" href="consultants.html">I am an Epic consultant</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="index.html" aria-label="BridgeLine Health home">
+        <span class="logo-mark">BL</span>
+        <span>BridgeLine Health</span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="#outcomes">Hospitals</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="consultants.html">Consultants</a></li>
+        <li><a href="mailto:inquiries@bridgeline.health">Contact</a></li>
+      </ul>
+      <span>&copy; 2026 BridgeLine Health</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navActions = document.querySelector('.nav-actions');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navActions.classList.toggle('open', isOpen);
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navActions.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+</body>
+</html>
