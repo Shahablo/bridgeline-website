@@ -224,18 +224,36 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
     hangerBleed.push({ x, m, e: 0 });
   });
 
-  /* pillars (logo towers) */
+  /* pillars — clean tapered posts (the logo's vertical bars) */
+  const pillarJoints = [];
   {
-    const p = [];
-    [-PX, PX].forEach((x) => {
-      [RIB_Z, -RIB_Z].forEach((z) => {
-        p.push(new THREE.Vector3(x, DECK_Y - 0.55, z), new THREE.Vector3(x, archY(x) + 0.55, z));
+    const frame = []; // posts + deck collar
+
+    [-PX, PX].forEach((px) => {
+      const levels = [
+        { y: DECK_Y - 0.7, w: 0.32, d: 0.66 },
+        { y: deckY(px), w: 0.28, d: 0.58 },
+        { y: (deckY(px) + archY(px)) / 2 + 0.35, w: 0.2, d: 0.52 },
+        { y: archY(px) + 0.55, w: 0.13, d: RIB_Z - 0.04 },
+      ];
+      const S = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+      const corner = (lv, sx, sz) => new THREE.Vector3(px + sx * lv.w, lv.y, sz * lv.d);
+
+      // tapered corner posts
+      for (let i = 0; i < levels.length - 1; i++) {
+        S.forEach(([sx, sz]) => frame.push(corner(levels[i], sx, sz), corner(levels[i + 1], sx, sz)));
+      }
+      // single collar at deck level — the posts top out as clean vertical bars
+      [levels[1]].forEach((lv) => {
+        for (let i = 0; i < 4; i++) {
+          frame.push(corner(lv, S[i][0], S[i][1]), corner(lv, S[(i + 1) % 4][0], S[(i + 1) % 4][1]));
+        }
       });
-      [DECK_Y - 0.5, deckY(x), archY(x) + 0.5].forEach((y) => {
-        p.push(new THREE.Vector3(x, y, RIB_Z), new THREE.Vector3(x, y, -RIB_Z));
-      });
+
+      levels.forEach((lv, li) => S.forEach(([sx, sz]) => pillarJoints.push({ p: corner(lv, sx, sz), top: li === 3 })));
     });
-    segments(p, lineMat(COL.blue, 0.42));
+
+    segments(frame, lineMat(COL.blue, 0.42));
   }
 
   /* ============================================================
@@ -296,11 +314,11 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
         nodes.push({ p: new THREE.Vector3(x, deckY(x), z), c: COL.blue, s: 1.7 });
       });
     });
-    [-PX, PX].forEach((x) => {
-      [RIB_Z, -RIB_Z].forEach((z) => {
-        [DECK_Y - 0.5, deckY(x), (deckY(x) + archY(x)) / 2, archY(x) + 0.5].forEach((y, yi) => {
-          nodes.push({ p: new THREE.Vector3(x, y, z), c: yi === 3 ? COL.teal : COL.blue, s: yi === 3 ? 3.1 : 2.2 });
-        });
+    pillarJoints.forEach((j) => {
+      nodes.push({
+        p: j.p,
+        c: j.apex ? COL.tealHot : j.top ? COL.teal : COL.blue,
+        s: j.apex ? 3.2 : j.top ? 2.2 : 1.4,
       });
     });
     nodes.push({ p: new THREE.Vector3(0, ARCH_H, RIB_Z), c: COL.tealHot, s: 3.4 });
@@ -334,8 +352,8 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
     bridge.add(s);
     return s;
   }
-  const hubL = hub(-PX, archY(PX) + 0.5, 0, 1.25, COL.teal, 0.42);
-  const hubR = hub(PX, archY(PX) + 0.5, 0, 1.25, COL.teal, 0.42);
+  const hubL = hub(-PX, archY(PX) + 0.62, 0, 1.25, COL.teal, 0.42);
+  const hubR = hub(PX, archY(PX) + 0.62, 0, 1.25, COL.teal, 0.42);
   hub(0, ARCH_H + 0.05, 0, 1.0, COL.teal, 0.32);
 
   /* flow paths */
