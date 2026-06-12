@@ -174,18 +174,6 @@
       }
     }
 
-    // floating match card: slow ambient drift after the entrance settles
-    const matchCard = $('.hero__match');
-    if (matchCard) {
-      gsap.to(matchCard, {
-        y: -9,
-        duration: 3.4,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-        delay: 1.6,
-      });
-    }
 
     // Generic reveals
     $$('[data-reveal]').forEach((el) => {
@@ -204,7 +192,7 @@
 
     // Staggered groups
     $$('[data-reveal-stagger]').forEach((group) => {
-      const children = [...group.children];
+      const children = [...group.children].filter((el) => !el.classList.contains('route'));
       if (!children.length) return;
       const stagger = parseFloat(group.dataset.revealStagger) || 0.09;
       gsap.fromTo(
@@ -220,6 +208,21 @@
         }
       );
     });
+
+    // Feature route: the line draws across as the stations light up
+    const routeProgress = $('.feature-grid .route__progress');
+    if (routeProgress) {
+      gsap.fromTo(
+        routeProgress,
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 1.3,
+          ease: 'power2.inOut',
+          scrollTrigger: { trigger: '.feature-grid', start: 'top 82%', once: true },
+        }
+      );
+    }
 
     // Metric counters
     $$('[data-count]').forEach((el) => {
@@ -302,7 +305,7 @@
     // the canvas is revealed once the quality governor has settled
     hero.classList.add('hero--booting');
     const boot = () => {
-      import('./hero-scene.js?v=20260612')
+      import('./hero-scene.js?v=20260612d')
         .then((mod) => {
           // belt-and-braces reveal: never leave the canvas hidden, even if the
           // scene module can't signal readiness (e.g. a stale cached version)
@@ -329,13 +332,7 @@
           hero.classList.remove('hero--booting'); // CDN unavailable — SVG returns
         });
     };
-    if (document.readyState === 'complete') {
-      boot();
-    } else {
-      window.addEventListener('load', () => {
-        if ('requestIdleCallback' in window) requestIdleCallback(boot, { timeout: 1200 });
-        else setTimeout(boot, 150);
-      });
-    }
+    // modules are already preloading (head script), so boot right away
+    boot();
   }
 })();

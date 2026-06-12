@@ -507,6 +507,17 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
      2 = dpr 1.5, half-res bloom, FXAA · 1 = dpr 1.15, quarter-res bloom ·
      0 = dpr 1, no post-processing. */
   let quality = 1;
+  let savedQuality = false;
+  try {
+    const saved = parseInt(localStorage.getItem('blQuality'), 10);
+    if (saved === 0 || saved === 1 || saved === 2) {
+      quality = saved;
+      savedQuality = true; // repeat visit: skip measurement, reveal immediately
+    }
+  } catch { /* storage unavailable */ }
+  function saveQuality() {
+    try { localStorage.setItem('blQuality', String(quality)); } catch { /* ignore */ }
+  }
   let canUpgrade = true;
   let viewW = 1, viewH = 1;
   let glowComp = 1, glowCompTarget = 1;   // brightness compensation when bloom is off
@@ -752,7 +763,7 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
   }
 
   let statT = 0, statN = 0, badStreak = 0, goodStreak = 0, warmup = 0;
-  let firstDecisionDone = false;
+  let firstDecisionDone = savedQuality;
 
   function frame() {
     rafId = requestAnimationFrame(frame);
@@ -762,13 +773,18 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
     else renderer.render(scene, camera);
 
     // performance governor: a fast first decision lands while the canvas is
-    // still hidden, then demote after two slow windows / promote after two
+    // still hidden (repeat visits reuse the stored decision and reveal at
+    // once), then demote after two slow windows / promote after two
     // clearly-fast ones (never re-promote once demoted)
-    if (warmup < 8) { warmup++; return; }
+    if (warmup < 4) {
+      warmup++;
+      if (warmup === 2 && firstDecisionDone) markReady();
+      return;
+    }
     statT += dt;
     statN++;
-    const winT = firstDecisionDone ? 0.9 : 0.6;
-    const winN = firstDecisionDone ? 18 : 12;
+    const winT = firstDecisionDone ? 0.9 : 0.45;
+    const winN = firstDecisionDone ? 18 : 9;
     if (statT >= winT && statN >= winN) {
       const avg = statT / statN;
       if (!firstDecisionDone) {
@@ -776,6 +792,7 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
         else if (avg > 0.028) { quality = Math.max(0, quality - 1); canUpgrade = false; }
         else if (avg < 0.016 && quality < 2) { quality = 2; }
         applyQuality();
+        saveQuality();
         firstDecisionDone = true;
         markReady();
       } else if (avg > 0.028) {
@@ -784,6 +801,7 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
           quality--;
           canUpgrade = false;
           applyQuality();
+          saveQuality();
           badStreak = 0;
         }
       } else if (avg < 0.015 && canUpgrade && quality < 2) {
@@ -791,6 +809,7 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
         if (++goodStreak >= 2) {
           quality++;
           applyQuality();
+          saveQuality();
           goodStreak = 0;
         }
       } else {

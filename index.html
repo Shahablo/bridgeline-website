@@ -16,12 +16,35 @@
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f2eee3'/%3E%3Crect x='10' y='12' width='10' height='40' rx='5' fill='%23101a2e'/%3E%3Crect x='44' y='12' width='10' height='40' rx='5' fill='%23101a2e'/%3E%3Cpath d='M15 40C24 26 40 26 49 40' fill='none' stroke='%230e6f68' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
 
-  <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('anim-ok');}}catch(e){}})();</script>
+  <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('anim-ok');}}catch(e){}
+  // start fetching the 3D module graph during HTML parse so the bridge is ready early
+  try{
+    var c=navigator.connection||{};
+    if(window.innerWidth>=880&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&!c.saveData){
+      var h=document.head,p=document.createElement('link');
+      p.rel='preconnect';p.href='https://cdn.jsdelivr.net';p.crossOrigin='anonymous';h.appendChild(p);
+      var T='https://cdn.jsdelivr.net/npm/three@0.161.0/';
+      ['assets/js/hero-scene.js?v=20260612d',
+       T+'build/three.module.js',
+       T+'examples/jsm/postprocessing/EffectComposer.js',
+       T+'examples/jsm/postprocessing/RenderPass.js',
+       T+'examples/jsm/postprocessing/UnrealBloomPass.js',
+       T+'examples/jsm/postprocessing/OutputPass.js',
+       T+'examples/jsm/postprocessing/ShaderPass.js',
+       T+'examples/jsm/postprocessing/Pass.js',
+       T+'examples/jsm/postprocessing/MaskPass.js',
+       T+'examples/jsm/shaders/CopyShader.js',
+       T+'examples/jsm/shaders/LuminosityHighPassShader.js',
+       T+'examples/jsm/shaders/FXAAShader.js'
+      ].forEach(function(u){var l=document.createElement('link');l.rel='modulepreload';l.href=u;h.appendChild(l);});
+    }
+  }catch(e){}
+  })();</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260612">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260612d">
 
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -33,7 +56,7 @@
     }
   }
   </script>
-  <script type="module" src="assets/js/main.js?v=20260612"></script>
+  <script type="module" src="assets/js/main.js?v=20260612d"></script>
 
   <script type="application/ld+json">
   {
@@ -211,27 +234,6 @@
         </div>
       </div>
 
-      <aside class="hero__match" data-hero aria-hidden="true">
-        <div class="match-toast">
-          <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" fill="#0e8074"/><path d="M5 8.3 7.1 10.4 11 6.2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Epic-specific screen passed
-        </div>
-        <div class="match-card">
-          <div class="match-card__head">
-            <span class="match-card__badge"><i></i>Match validated</span>
-            <span class="match-card__day">Day 4</span>
-          </div>
-          <p class="match-card__role">Willow &middot; At-the-elbow go-live</p>
-          <ul class="match-card__meta">
-            <li>8+ yrs Epic &middot; 3 activations supported</li>
-            <li>Onsite &middot; Deploys week 1</li>
-          </ul>
-          <div class="match-card__foot">
-            <span>Fit notes &amp; rate included</span>
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
-      </aside>
     </section>
 
     <!-- ============ METRICS + HOSPITAL BUYERS ============ -->
@@ -276,7 +278,8 @@
           </div>
         </header>
 
-        <div class="feature-grid" data-reveal-stagger>
+        <div class="feature-grid" data-reveal-stagger="0.18">
+          <div class="route" aria-hidden="true"><span class="route__progress"></span></div>
           <article class="feature">
             <div class="feature__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><rect x="3" y="9.5" width="4.2" height="11" rx="2.1" fill="currentColor"/><rect x="16.8" y="9.5" width="4.2" height="11" rx="2.1" fill="currentColor"/><path d="M5 12.5c4.7-5.4 9.3-5.4 14 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
