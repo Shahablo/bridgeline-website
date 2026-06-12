@@ -30,11 +30,11 @@
   // start fetching the 3D module graph during HTML parse so the bridge is ready early
   try{
     var c=navigator.connection||{};
-    if(window.innerWidth>=880&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&!c.saveData){
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&!c.saveData){
       var h=document.head,p=document.createElement('link');
       p.rel='preconnect';p.href='https://cdn.jsdelivr.net';p.crossOrigin='anonymous';h.appendChild(p);
       var T='https://cdn.jsdelivr.net/npm/three@0.161.0/';
-      ['assets/js/hero-scene.js?v=20260612e',
+      ['assets/js/hero-scene.js?v=20260612f',
        T+'build/three.module.js',
        T+'examples/jsm/postprocessing/EffectComposer.js',
        T+'examples/jsm/postprocessing/RenderPass.js',
@@ -54,11 +54,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260612e">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260612f">
 
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="module" src="assets/js/main.js?v=20260612e"></script>
+  <script type="module" src="assets/js/main.js?v=20260612f"></script>
 
   <script type="application/ld+json">
   {

@@ -383,7 +383,7 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
   ];
   const weightSum = flowCurves.reduce((s, f) => s + f.w, 0);
 
-  const FLOWS = 230;
+  const FLOWS = window.innerWidth < 880 ? 150 : 230;
   const flows = [];
   let flowAttr;
   {
@@ -620,9 +620,15 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
     } else if (aspect > 1.1) {
       root.position.set(5.3, -1.4, 0);
       root.scale.setScalar(1.8);
+    } else if (aspect > 0.75) {
+      // portrait tablets: centered crop of the span
+      root.position.set(1.6, -1.5, 0);
+      root.scale.setScalar(1.25);
     } else {
-      root.position.set(1.6, -0.9, 0);
-      root.scale.setScalar(1.5);
+      // phones: the crown sweeps across the lower third under the copy,
+      // left pillar just inside the frame
+      root.position.set(0.4, -2.15, 0);
+      root.scale.setScalar(0.72);
     }
   }
 
