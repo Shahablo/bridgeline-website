@@ -17,6 +17,9 @@
   // If animation can't run, make sure nothing stays at opacity:0
   if (!animate) document.documentElement.classList.remove('anim-ok');
 
+  // set when GSAP wires up the hero-follow reveals; called once the bridge shows
+  let revealAfterBridge = null;
+
   /* ---------- header ---------- */
   const header = $('.header');
   const heroWatch = $('[data-header-flip]');
@@ -176,7 +179,7 @@
 
 
     // Generic reveals
-    $$('[data-reveal]').forEach((el) => {
+    $$('[data-reveal]').filter((el) => !el.hasAttribute('data-reveal-auto')).forEach((el) => {
       gsap.fromTo(
         el,
         { autoAlpha: 0, y: 28 },
@@ -191,7 +194,7 @@
     });
 
     // Staggered groups
-    $$('[data-reveal-stagger]').forEach((group) => {
+    $$('[data-reveal-stagger]').filter((el) => !el.hasAttribute('data-reveal-auto')).forEach((group) => {
       const children = [...group.children].filter((el) => !el.classList.contains('route'));
       if (!children.length) return;
       const stagger = parseFloat(group.dataset.revealStagger) || 0.09;
@@ -208,6 +211,38 @@
         }
       );
     });
+
+    // Hero-follow reveals: the ticker and metrics cascade in shortly after
+    // the bridge appears; scrolling into view remains the fallback trigger
+    const autoPlays = [];
+    $$('[data-reveal-auto]').forEach((el) => {
+      const isGroup = el.hasAttribute('data-reveal-stagger');
+      const targets = isGroup
+        ? [...el.children].filter((c) => !c.classList.contains('route'))
+        : el;
+      const stagger = isGroup ? parseFloat(el.dataset.revealStagger) || 0.09 : 0;
+      const tween = gsap.fromTo(
+        targets,
+        { autoAlpha: 0, y: 24 },
+        { autoAlpha: 1, y: 0, duration: 0.75, ease: 'power3.out', stagger, paused: true }
+      );
+      const st = ScrollTrigger.create({
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => tween.play(),
+      });
+      autoPlays.push(() => {
+        st.kill();
+        tween.play();
+      });
+    });
+    if (autoPlays.length) {
+      revealAfterBridge = () => {
+        autoPlays.forEach((play, i) => setTimeout(play, 500 + i * 280));
+        revealAfterBridge = null;
+      };
+    }
 
     // Feature route: the line draws across as the stations light up
     const routeProgress = $('.feature-grid .route__progress');
@@ -305,16 +340,20 @@
     // the canvas is revealed once the quality governor has settled
     hero.classList.add('hero--booting');
     const boot = () => {
-      import('./hero-scene.js?v=20260612d')
+      import('./hero-scene.js?v=20260612e')
         .then((mod) => {
           // belt-and-braces reveal: never leave the canvas hidden, even if the
           // scene module can't signal readiness (e.g. a stale cached version)
-          const revealTimer = setTimeout(() => hero.classList.add('hero--3d'), 3000);
+          const reveal = () => {
+            hero.classList.add('hero--3d');
+            if (revealAfterBridge) revealAfterBridge();
+          };
+          const revealTimer = setTimeout(reveal, 3000);
           const scene = mod.createHeroScene(canvas, {
             reducedMotion,
             onReady: () => {
               clearTimeout(revealTimer);
-              hero.classList.add('hero--3d');
+              reveal();
             },
           });
           if (!scene) {

@@ -16,6 +16,16 @@
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f2eee3'/%3E%3Crect x='10' y='12' width='10' height='40' rx='5' fill='%23101a2e'/%3E%3Crect x='44' y='12' width='10' height='40' rx='5' fill='%23101a2e'/%3E%3Cpath d='M15 40C24 26 40 26 49 40' fill='none' stroke='%230e6f68' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
 
+  <!-- the import map must precede every module fetch, including modulepreload links -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('anim-ok');}}catch(e){}
   // start fetching the 3D module graph during HTML parse so the bridge is ready early
   try{
@@ -24,7 +34,7 @@
       var h=document.head,p=document.createElement('link');
       p.rel='preconnect';p.href='https://cdn.jsdelivr.net';p.crossOrigin='anonymous';h.appendChild(p);
       var T='https://cdn.jsdelivr.net/npm/three@0.161.0/';
-      ['assets/js/hero-scene.js?v=20260612d',
+      ['assets/js/hero-scene.js?v=20260612e',
        T+'build/three.module.js',
        T+'examples/jsm/postprocessing/EffectComposer.js',
        T+'examples/jsm/postprocessing/RenderPass.js',
@@ -44,19 +54,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260612d">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260612e">
 
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
-    }
-  }
-  </script>
-  <script type="module" src="assets/js/main.js?v=20260612d"></script>
+  <script type="module" src="assets/js/main.js?v=20260612e"></script>
 
   <script type="application/ld+json">
   {
@@ -239,7 +241,7 @@
     <!-- ============ METRICS + HOSPITAL BUYERS ============ -->
     <section class="section section--cream section--angled" id="hospitals" aria-labelledby="hospitals-title">
       <div class="container">
-        <div class="trust-strip" data-reveal>
+        <div class="trust-strip" data-reveal data-reveal-auto>
           <div class="hero__ticker" aria-label="Epic modules supported">
             <div class="ticker__track">
               <ul class="ticker__group">
@@ -252,7 +254,7 @@
           </div>
         </div>
 
-        <ul class="metrics" data-reveal-stagger aria-label="BridgeLine Health metrics">
+        <ul class="metrics" data-reveal-stagger data-reveal-auto aria-label="BridgeLine Health metrics">
           <li class="metric">
             <strong>3–5d</strong>
             <span>Typical first qualified shortlist after founder-led intake.</span>

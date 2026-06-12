@@ -518,7 +518,6 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
   function saveQuality() {
     try { localStorage.setItem('blQuality', String(quality)); } catch { /* ignore */ }
   }
-  let canUpgrade = true;
   let viewW = 1, viewH = 1;
   let glowComp = 1, glowCompTarget = 1;   // brightness compensation when bloom is off
   let pointComp = 1, pointCompTarget = 1; // (eased between tiers so switches don't pop)
@@ -762,7 +761,7 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
     hubR.material.opacity = Math.min(1, 0.42 + 0.12 * Math.sin(t * 1.1 + 2.2) + hubBoostR);
   }
 
-  let statT = 0, statN = 0, badStreak = 0, goodStreak = 0, warmup = 0;
+  let statT = 0, statN = 0, badStreak = 0, warmup = 0;
   let firstDecisionDone = savedQuality;
 
   function frame() {
@@ -774,8 +773,8 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
 
     // performance governor: a fast first decision lands while the canvas is
     // still hidden (repeat visits reuse the stored decision and reveal at
-    // once), then demote after two slow windows / promote after two
-    // clearly-fast ones (never re-promote once demoted)
+    // once); after the reveal it only ever demotes — visible upgrades read
+    // as a second "version" of the scene
     if (warmup < 4) {
       warmup++;
       if (warmup === 2 && firstDecisionDone) markReady();
@@ -788,33 +787,22 @@ export function createHeroScene(canvas, { reducedMotion = false, onReady } = {})
     if (statT >= winT && statN >= winN) {
       const avg = statT / statN;
       if (!firstDecisionDone) {
-        if (avg > 0.055) { quality = 0; canUpgrade = false; }
-        else if (avg > 0.028) { quality = Math.max(0, quality - 1); canUpgrade = false; }
-        else if (avg < 0.016 && quality < 2) { quality = 2; }
+        if (avg > 0.055) { quality = 0; }
+        else if (avg > 0.028) { quality = Math.max(0, quality - 1); }
+        else if (avg < 0.011 && quality < 2) { quality = 2; }
         applyQuality();
         saveQuality();
         firstDecisionDone = true;
         markReady();
       } else if (avg > 0.028) {
-        goodStreak = 0;
         if (++badStreak >= 2 && quality > 0) {
           quality--;
-          canUpgrade = false;
           applyQuality();
           saveQuality();
           badStreak = 0;
         }
-      } else if (avg < 0.015 && canUpgrade && quality < 2) {
-        badStreak = 0;
-        if (++goodStreak >= 2) {
-          quality++;
-          applyQuality();
-          saveQuality();
-          goodStreak = 0;
-        }
       } else {
         badStreak = 0;
-        goodStreak = 0;
       }
       statT = 0;
       statN = 0;
