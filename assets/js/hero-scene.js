@@ -66,6 +66,7 @@ const POINT_VERT = /* glsl */ `
   uniform float uPR;
   uniform vec3 uPulse;
   uniform float uPulseStr;
+  uniform float uPulseK;
   uniform vec3 uPointer;
   uniform float uPointerStr;
   varying vec3 vColor;
@@ -74,7 +75,7 @@ const POINT_VERT = /* glsl */ `
     vec3 p = position;
     float tw = 0.62 + 0.38 * sin(uTime * 1.7 + aPhase);
     float dp = distance(p, uPulse);
-    float flare = uPulseStr * exp(-dp * dp * 0.55);
+    float flare = uPulseStr * exp(-dp * dp * uPulseK);
     float dm = distance(p.xy, uPointer.xy);
     float hover = uPointerStr * exp(-dm * dm * 0.30);
     float boost = 1.0 + flare * 2.0 + hover * 1.0;
@@ -99,7 +100,7 @@ const POINT_FRAG = /* glsl */ `
   }
 `;
 
-export function createHeroScene(canvas, { reducedMotion = false } = {}) {
+export function createHeroScene(canvas, { reducedMotion = false, onReady } = {}) {
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
@@ -214,14 +215,26 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
   for (let x = -5.7; x <= 5.71; x += 0.82) hangerXs.push(x);
 
   const hangerBleed = [];
-  hangerXs.forEach((x) => {
-    const m = lineMat(COL.blue, 0.14);
-    const pts = [];
+  hangerXs.forEach((x, i) => {
+    const m = lineMat(COL.blue, 0.17);
+    m.vertexColors = true; // additive blending: darker vertex = more transparent
+    const pos = [];
+    const col = [];
+    const ramp = (v) => col.push(v, v, v);
     [RIB_Z, -RIB_Z].forEach((z) => {
-      pts.push(new THREE.Vector3(x, deckY(x), z), new THREE.Vector3(x, archY(x), z));
+      const yTop = archY(x);
+      const yBot = deckY(x);
+      const yMid = yBot + (yTop - yBot) * 0.45;
+      pos.push(new THREE.Vector3(x, yTop, z), new THREE.Vector3(x, yMid, z));
+      ramp(1); ramp(0.45);
+      pos.push(new THREE.Vector3(x, yMid, z), new THREE.Vector3(x, yBot, z));
+      ramp(0.45); ramp(0.08);
     });
-    segments(pts, m);
-    hangerBleed.push({ x, m, e: 0 });
+    const geo = new THREE.BufferGeometry().setFromPoints(pos);
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+    disposables.push(geo);
+    bridge.add(new THREE.LineSegments(geo, m));
+    hangerBleed.push({ x, m, e: 0, phase: i * 0.9 });
   });
 
   /* pillars — clean tapered posts (the logo's vertical bars) */
@@ -271,6 +284,7 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
         uPR: { value: 1 },
         uPulse: { value: new THREE.Vector3(0, -50, 0) },
         uPulseStr: { value: 0 },
+        uPulseK: { value: 0.55 },
         uPointer: { value: new THREE.Vector3(0, -50, 0) },
         uPointerStr: { value: 0 },
         uGlobalAlpha: { value: globalAlpha },
@@ -495,8 +509,17 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
   let quality = 1;
   let canUpgrade = true;
   let viewW = 1, viewH = 1;
-  let glowComp = 1; // brightness compensation when bloom is off
+  let glowComp = 1, glowCompTarget = 1;   // brightness compensation when bloom is off
+  let pointComp = 1, pointCompTarget = 1; // (eased between tiers so switches don't pop)
+  let compSnap = true;
   const QUALITY_DPR = [1, 1.15, 1.5];
+
+  function applyComp() {
+    lineMats.forEach((m) => { m.opacity = Math.min(1, m.userData.base * glowComp); });
+    pointMats.forEach((m) => {
+      m.uniforms.uGlobalAlpha.value = Math.min(1, m.userData.baseAlpha * pointComp);
+    });
+  }
 
   function applyQuality() {
     if (!viewW || !viewH) return;
@@ -513,12 +536,14 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
     fxaa.material.uniforms.resolution.value.set(1 / dw, 1 / dh);
     setPointUniform('uPR', (u) => { u.value = dpr; });
 
-    glowComp = quality === 0 ? 1.5 : 1;
-    const pointComp = quality === 0 ? 1.25 : 1;
-    lineMats.forEach((m) => { m.opacity = Math.min(1, m.userData.base * glowComp); });
-    pointMats.forEach((m) => {
-      m.uniforms.uGlobalAlpha.value = Math.min(1, m.userData.baseAlpha * pointComp);
-    });
+    glowCompTarget = quality === 0 ? 1.5 : 1;
+    pointCompTarget = quality === 0 ? 1.25 : 1;
+    if (compSnap) {
+      glowComp = glowCompTarget;
+      pointComp = pointCompTarget;
+      compSnap = false;
+    }
+    applyComp();
     canvas.dataset.q = quality;
   }
 
@@ -537,8 +562,16 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
   const clock = new THREE.Clock();
   let running = false, inView = true, rafId = 0;
   let pulseClock = rand(0, 5), pulseDir = -1; // first run starts at the right pillar
-  const PULSE_TRAVEL = 2.1, PULSE_FADE = 0.7, PULSE_IDLE = 11.0;
+  const PULSE_TRAVEL = 2.1, PULSE_FADE = 1.1, PULSE_IDLE = 10.6;
   const PULSE_TOTAL = PULSE_TRAVEL + PULSE_FADE + PULSE_IDLE;
+  let hubBoostL = 0, hubBoostR = 0;
+
+  let readyFired = false;
+  function markReady() {
+    if (readyFired) return;
+    readyFired = true;
+    if (typeof onReady === 'function') onReady();
+  }
   const pulsePos = new THREE.Vector3(0, -50, 0);
   let heroH = 1;
 
@@ -591,6 +624,7 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
       pulseRib = 1 - pulseRib;
     }
     let str = 0;
+    let kWidth = 0.55;
     if (pulseClock < PULSE_TRAVEL) {
       const k = pulseClock / PULSE_TRAVEL;
       const eased = k * k * (3 - 2 * k); // smoothstep pacing
@@ -607,19 +641,43 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
       }
       trailAttr.needsUpdate = true;
     } else if (pulseClock < PULSE_TRAVEL + PULSE_FADE) {
-      // soft dissolve at the far pillar — no flare
+      // arrival: the light spreads across the pylon and dissolves
       const k = (pulseClock - PULSE_TRAVEL) / PULSE_FADE;
       const x = pulseDir > 0 ? PX : -PX;
       pulsePos.set(x, archY(PX), pulseRib === 0 ? RIB_Z : -RIB_Z);
-      str = (1 - k) * (1 - k) * 0.8;
-      hideTrail();
+      str = Math.pow(1 - k, 1.6) * 0.9;
+      kWidth = 0.55 - 0.45 * k; // gaussian widens → glow washes over the H
+
+      // the comet collapses into the pillar, tail points merging one by one
+      const endT = pulseDir > 0 ? 1 : 0;
+      for (let i = 0; i < TRAIL; i++) {
+        const off = pulseDir * i * 0.016 * (1 - k);
+        if (i > 0 && Math.abs(off) < 0.0009) {
+          trailAttr.array[i * 3 + 1] = -50;
+          continue;
+        }
+        const back = Math.max(0, Math.min(1, endT - off));
+        pulseCurves[pulseRib].getPoint(back, tmp);
+        trailAttr.array[i * 3] = tmp.x;
+        trailAttr.array[i * 3 + 1] = tmp.y;
+        trailAttr.array[i * 3 + 2] = tmp.z;
+      }
+      trailAttr.needsUpdate = true;
+
+      // destination beacon takes the light: one soft swell, then settles
+      const swell = Math.sin(Math.min(k * 2.5, 1) * Math.PI) * 0.35;
+      if (pulseDir > 0) hubBoostR = Math.max(hubBoostR, swell);
+      else hubBoostL = Math.max(hubBoostL, swell);
     } else {
       str = 0;
       pulsePos.set(0, -50, 0);
       hideTrail();
     }
+    hubBoostL *= Math.exp(-dt * 2.6);
+    hubBoostR *= Math.exp(-dt * 2.6);
     setPointUniform('uPulse', (u) => u.value.copy(pulsePos));
     setPointUniform('uPulseStr', (u) => { u.value = str; });
+    setPointUniform('uPulseK', (u) => { u.value = kWidth; });
   }
 
   function update(dt, t) {
@@ -656,6 +714,14 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
 
     updatePulse(dt, t);
 
+    // ease brightness compensation between quality tiers
+    if (Math.abs(glowComp - glowCompTarget) > 0.003 || Math.abs(pointComp - pointCompTarget) > 0.003) {
+      const f = Math.min(1, dt * 3.2);
+      glowComp += (glowCompTarget - glowComp) * f;
+      pointComp += (pointCompTarget - pointComp) * f;
+      applyComp();
+    }
+
     // light bleeds down the hangers as the beam passes, then decays
     const pulseActive = pulsePos.y > -10;
     for (let i = 0; i < hangerBleed.length; i++) {
@@ -666,7 +732,8 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
       }
       h.e *= Math.exp(-dt * 1.8);
       if (h.e < 0.003) h.e = 0;
-      h.m.opacity = Math.min(1, (h.m.userData.base + h.e * 0.5) * glowComp);
+      const breathe = 0.8 + 0.25 * Math.sin(t * 0.5 + h.phase);
+      h.m.opacity = Math.min(1, (h.m.userData.base * breathe + h.e * 0.5) * glowComp);
     }
 
     // pointer flare position (bridge-local)
@@ -679,12 +746,13 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
     setPointUniform('uPointerStr', (u) => { u.value = pointerStr * 0.9; });
     setPointUniform('uTime', (u) => { u.value = t; });
 
-    // hub shimmer
-    hubL.material.opacity = 0.42 + 0.12 * Math.sin(t * 1.1);
-    hubR.material.opacity = 0.42 + 0.12 * Math.sin(t * 1.1 + 2.2);
+    // hub shimmer (+ arrival swell when the beam lands)
+    hubL.material.opacity = Math.min(1, 0.42 + 0.12 * Math.sin(t * 1.1) + hubBoostL);
+    hubR.material.opacity = Math.min(1, 0.42 + 0.12 * Math.sin(t * 1.1 + 2.2) + hubBoostR);
   }
 
   let statT = 0, statN = 0, badStreak = 0, goodStreak = 0, warmup = 0;
+  let firstDecisionDone = false;
 
   function frame() {
     rafId = requestAnimationFrame(frame);
@@ -693,14 +761,24 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
     if (quality > 0) composer.render();
     else renderer.render(scene, camera);
 
-    // performance governor: demote after two slow windows, promote after
-    // two clearly-fast ones (and never re-promote once demoted)
-    if (warmup < 14) { warmup++; return; }
+    // performance governor: a fast first decision lands while the canvas is
+    // still hidden, then demote after two slow windows / promote after two
+    // clearly-fast ones (never re-promote once demoted)
+    if (warmup < 8) { warmup++; return; }
     statT += dt;
     statN++;
-    if (statT >= 0.9 && statN >= 18) {
+    const winT = firstDecisionDone ? 0.9 : 0.6;
+    const winN = firstDecisionDone ? 18 : 12;
+    if (statT >= winT && statN >= winN) {
       const avg = statT / statN;
-      if (avg > 0.028) {
+      if (!firstDecisionDone) {
+        if (avg > 0.055) { quality = 0; canUpgrade = false; }
+        else if (avg > 0.028) { quality = Math.max(0, quality - 1); canUpgrade = false; }
+        else if (avg < 0.016 && quality < 2) { quality = 2; }
+        applyQuality();
+        firstDecisionDone = true;
+        markReady();
+      } else if (avg > 0.028) {
         goodStreak = 0;
         if (++badStreak >= 2 && quality > 0) {
           quality--;
@@ -764,14 +842,20 @@ export function createHeroScene(canvas, { reducedMotion = false } = {}) {
     document.documentElement.addEventListener('pointerleave', onPointerLeave);
   }
 
+  // never leave the canvas hidden: if the governor can't decide (hidden tab,
+  // paused loop), reveal after a wall-clock fallback anyway
+  const readyTimer = setTimeout(markReady, 2600);
+
   layout();
   update(0, 0.001);
   composer.render();
-  if (!reducedMotion) start();
+  if (reducedMotion) markReady();
+  else start();
 
   return {
     dispose() {
       stop();
+      clearTimeout(readyTimer);
       ro.disconnect();
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);

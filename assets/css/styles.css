@@ -411,6 +411,7 @@ h1, h2, h3, h4 {
   height: auto;
   opacity: 0.8;
 }
+.hero--booting .hero__fallback,
 .hero--3d .hero__fallback { display: none; }
 
 .hero__scrim {
@@ -433,10 +434,10 @@ h1, h2, h3, h4 {
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 720px) 1fr;
-  min-height: max(600px, 84svh);
+  min-height: max(580px, 76svh);
   align-items: center;
   padding-top: calc(var(--header-h) + 40px);
-  padding-bottom: 148px;
+  padding-bottom: 120px;
 }
 
 /* grid items must be allowed to shrink below content min-size */
@@ -506,7 +507,7 @@ h1, h2, h3, h4 {
 .ticker__track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 46s linear infinite;
+  animation: ticker-scroll 56s linear infinite;
 }
 .hero__ticker:hover .ticker__track { animation-play-state: paused; }
 .ticker__group {
@@ -518,7 +519,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 550;
   color: rgba(240, 246, 252, 0.55);
 }
@@ -529,7 +530,7 @@ h1, h2, h3, h4 {
   height: 4px;
   border-radius: 50%;
   background: rgba(94, 234, 212, 0.5);
-  margin: 0 16px;
+  margin: 0 18px;
 }
 @keyframes ticker-scroll {
   to { transform: translateX(-50%); }
@@ -541,7 +542,7 @@ h1, h2, h3, h4 {
   z-index: 6;
   right: clamp(28px, 7vw, 120px);
   top: auto;
-  bottom: -104px;
+  bottom: -60px;
   width: 296px;
   pointer-events: none;
 }
@@ -682,7 +683,7 @@ h1, h2, h3, h4 {
 
 /* ---------- Angled section seam (diagonal transition out of the hero) ---------- */
 .section--angled {
-  padding-top: clamp(48px, 4vw + 24px, 80px);
+  padding-top: clamp(36px, 3vw + 14px, 60px);
 }
 .section--angled::before {
   content: "";

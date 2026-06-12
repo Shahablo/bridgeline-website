@@ -284,21 +284,42 @@
     (() => {
       try {
         const test = document.createElement('canvas');
-        return !!(test.getContext('webgl2') || test.getContext('webgl'));
+        const gl = test.getContext('webgl2') || test.getContext('webgl');
+        if (!gl) return false;
+        // software rasterizers (VDI / remote desktop / locked-down machines)
+        // report WebGL but render on CPU — those get the SVG fallback
+        const info = gl.getExtension('WEBGL_debug_renderer_info');
+        const name = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+        if (/swiftshader|llvmpipe|software|basic render/i.test(name)) return false;
+        return true;
       } catch {
         return false;
       }
     })();
 
   if (want3D) {
+    // hide the SVG fallback while 3D boots so only one bridge is ever seen;
+    // the canvas is revealed once the quality governor has settled
+    hero.classList.add('hero--booting');
     const boot = () => {
       import('./hero-scene.js')
         .then((mod) => {
-          const scene = mod.createHeroScene(canvas, { reducedMotion });
-          if (scene) hero.classList.add('hero--3d');
+          const scene = mod.createHeroScene(canvas, {
+            reducedMotion,
+            onReady: () => hero.classList.add('hero--3d'),
+          });
+          if (!scene) {
+            hero.classList.remove('hero--booting');
+            return;
+          }
+          // GPU reset / driver crash: tear down and hand back to the SVG
+          canvas.addEventListener('webglcontextlost', () => {
+            scene.dispose();
+            hero.classList.remove('hero--3d', 'hero--booting');
+          }, { once: true });
         })
         .catch(() => {
-          /* CDN unavailable — the SVG fallback stays in place */
+          hero.classList.remove('hero--booting'); // CDN unavailable — SVG returns
         });
     };
     if (document.readyState === 'complete') {
