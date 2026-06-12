@@ -302,13 +302,20 @@
     // the canvas is revealed once the quality governor has settled
     hero.classList.add('hero--booting');
     const boot = () => {
-      import('./hero-scene.js')
+      import('./hero-scene.js?v=20260612')
         .then((mod) => {
+          // belt-and-braces reveal: never leave the canvas hidden, even if the
+          // scene module can't signal readiness (e.g. a stale cached version)
+          const revealTimer = setTimeout(() => hero.classList.add('hero--3d'), 3000);
           const scene = mod.createHeroScene(canvas, {
             reducedMotion,
-            onReady: () => hero.classList.add('hero--3d'),
+            onReady: () => {
+              clearTimeout(revealTimer);
+              hero.classList.add('hero--3d');
+            },
           });
           if (!scene) {
+            clearTimeout(revealTimer);
             hero.classList.remove('hero--booting');
             return;
           }
