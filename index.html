@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BridgeLine Health | Epic Consulting Talent</title>
-  <meta name="description" content="BridgeLine Health places vetted Epic consultants for health-system implementations, optimizations, go-lives, upgrades, and backfill.">
+  <title>BridgeLine Health | Epic Staffing &amp; Healthcare AI Consulting</title>
+  <meta name="description" content="BridgeLine Health places vetted Epic consultants in days and helps hospitals govern and deliver healthcare AI — staffing, AI governance, and AI delivery from former Epic operators.">
   <meta name="theme-color" content="#0a1a2f">
   <link rel="canonical" href="https://bridgeline.health/">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bridgeline.health/">
-  <meta property="og:title" content="BridgeLine Health | Epic Consulting Talent">
-  <meta property="og:description" content="Epic consulting teams matched in days. Vetted consultants for implementation, optimization, go-live, upgrade, and backfill work.">
+  <meta property="og:title" content="BridgeLine Health | Epic Staffing &amp; Healthcare AI Consulting">
+  <meta property="og:description" content="Epic consulting teams matched in days — plus AI governance and AI delivery for hospitals. Founder-led, built by former Epic operators.">
   <meta property="og:image" content="https://bridgeline.health/logo2.jpg">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f2eee3'/%3E%3Crect x='10' y='12' width='10' height='40' rx='5' fill='%23101a2e'/%3E%3Crect x='44' y='12' width='10' height='40' rx='5' fill='%23101a2e'/%3E%3Cpath d='M15 40C24 26 40 26 49 40' fill='none' stroke='%230e6f68' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- self-hosted variable fonts: preloaded so text paints on the first pass -->
+  <link rel="preload" href="assets/fonts/inter-tight-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- the import map must precede every module fetch, including modulepreload links -->
   <script type="importmap">
@@ -27,14 +31,15 @@
   </script>
 
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('anim-ok');}}catch(e){}
-  // start fetching the 3D module graph during HTML parse so the bridge is ready early
+  // start fetching the 3D module graph during HTML parse so the bridge is ready
+  // early; low fetch priority keeps it from competing with fonts and CSS
   try{
     var c=navigator.connection||{};
     if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&!c.saveData){
       var h=document.head,p=document.createElement('link');
       p.rel='preconnect';p.href='https://cdn.jsdelivr.net';p.crossOrigin='anonymous';h.appendChild(p);
       var T='https://cdn.jsdelivr.net/npm/three@0.161.0/';
-      ['assets/js/hero-scene.js?v=20260612f',
+      ['assets/js/hero-scene.js?v=20261012',
        T+'build/three.module.js',
        T+'examples/jsm/postprocessing/EffectComposer.js',
        T+'examples/jsm/postprocessing/RenderPass.js',
@@ -46,19 +51,16 @@
        T+'examples/jsm/shaders/CopyShader.js',
        T+'examples/jsm/shaders/LuminosityHighPassShader.js',
        T+'examples/jsm/shaders/FXAAShader.js'
-      ].forEach(function(u){var l=document.createElement('link');l.rel='modulepreload';l.href=u;h.appendChild(l);});
+      ].forEach(function(u){var l=document.createElement('link');l.rel='modulepreload';l.href=u;l.fetchPriority='low';h.appendChild(l);});
     }
   }catch(e){}
   })();</script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260612f">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261012">
 
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="module" src="assets/js/main.js?v=20260612f"></script>
+  <script defer src="assets/js/vendor/gsap.min.js"></script>
+  <script defer src="assets/js/vendor/ScrollTrigger.min.js"></script>
+  <script type="module" src="assets/js/main.js?v=20261012"></script>
 
   <script type="application/ld+json">
   {
@@ -68,7 +70,8 @@
     "url": "https://bridgeline.health/",
     "logo": "https://bridgeline.health/logo2.jpg",
     "email": "inquiries@bridgeline.health",
-    "description": "BridgeLine Health places vetted Epic consultants for health-system implementations, optimizations, go-lives, upgrades, and backfill."
+    "description": "BridgeLine Health places vetted Epic consultants for health-system implementations, optimizations, go-lives, upgrades, and backfill, and helps hospitals stand up AI governance and deliver AI projects inside Epic workflows.",
+    "knowsAbout": ["Epic consulting staffing", "Healthcare AI governance", "Healthcare AI implementation", "Epic go-live support", "Revenue cycle automation"]
   }
   </script>
   <script type="application/ld+json">
@@ -79,9 +82,11 @@
       { "@type": "Question", "name": "How fast can you send candidates?", "acceptedAnswer": { "@type": "Answer", "text": "For well-scoped urgent needs, the first qualified shortlist is typically 3-5 days after intake." } },
       { "@type": "Question", "name": "Do you cover all Epic modules?", "acceptedAnswer": { "@type": "Answer", "text": "We support the major Epic ecosystem across clinical, revenue cycle, access, reporting, and training roles." } },
       { "@type": "Question", "name": "Can you support go-lives?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We place analysts, trainers, at-the-elbow support, project managers, and activation support roles." } },
+      { "@type": "Question", "name": "What does the AI governance work look like?", "acceptedAnswer": { "@type": "Answer", "text": "We help you stand up or mature the oversight boards and surveyors now expect: an AI inventory, an intake and vetting workflow, governance policy and committee design, and a validation and monitoring cadence - aligned to the Joint Commission and CHAI guidance and the NIST AI Risk Management Framework, and mapped to your Epic workflows." } },
+      { "@type": "Question", "name": "Can you deliver AI projects, not just advise?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We scope and staff delivery teams for ambient documentation rollouts, Epic AI feature enablement, predictive model validation, and revenue-cycle automation - with governance built in from day one." } },
       { "@type": "Question", "name": "Are rates transparent?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We discuss rates, work model, availability, and conversion terms before submitting candidates." } },
       { "@type": "Question", "name": "How are engagements structured?", "acceptedAnswer": { "@type": "Answer", "text": "We finalize contract structure, rates, and terms during intake, based on the role, timeline, and client requirements." } },
-      { "@type": "Question", "name": "How do we get started?", "acceptedAnswer": { "@type": "Answer", "text": "Email inquiries@bridgeline.health with the module, timeline, role type, and what is at risk." } }
+      { "@type": "Question", "name": "How do we get started?", "acceptedAnswer": { "@type": "Answer", "text": "Email inquiries@bridgeline.health with the module or AI initiative, the timeline, and what is at risk." } }
     ]
   }
   </script>
@@ -102,10 +107,10 @@
 
       <nav aria-label="Primary">
         <ul class="nav-links">
-          <li><a href="#hospitals">Hospitals</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#ai">AI practice</a></li>
           <li><a href="#process">Process</a></li>
           <li><a href="#modules">Modules</a></li>
-          <li><a href="#consultants">Consultants</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
@@ -123,10 +128,10 @@
 
   <nav class="mobile-menu" id="mobile-menu" hidden aria-label="Mobile">
     <ul>
-      <li><a href="#hospitals">Hospitals</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#ai">AI practice</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#modules">Modules</a></li>
-      <li><a href="#consultants">Consultants</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="mobile-menu__cta">
@@ -142,7 +147,7 @@
       <div class="hero__bg" aria-hidden="true">
         <canvas class="hero__canvas" data-hero-canvas></canvas>
 
-        <!-- Lightweight bridge fallback (mobile / reduced data / no WebGL) -->
+        <!-- Lightweight bridge fallback (reduced data / no WebGL) -->
         <svg class="hero__fallback" viewBox="0 0 900 620" fill="none" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="hf-arc" x1="0" y1="0" x2="1" y2="0">
@@ -225,21 +230,26 @@
             Epic consulting teams
             <span class="accent">matched in days.</span>
           </h1>
-          <p class="hero__copy" data-hero>BridgeLine Health helps hospitals fill Epic implementation, optimization, go-live, upgrade, and backfill gaps with vetted consultants who match the exact module, workflow, and timeline.</p>
+          <p class="hero__copy" data-hero>BridgeLine Health fills Epic implementation, go-live, optimization, and backfill gaps with vetted consultants — and helps hospitals govern and deliver the AI now moving into Epic workflows.</p>
           <div class="hero__actions" data-hero>
             <a class="btn btn--primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&amp;body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">
               Get a shortlist
               <svg class="btn__arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a class="btn btn--outline" href="#process">See how vetting works</a>
+            <a class="btn btn--outline" href="#services">Explore services</a>
           </div>
+          <ul class="hero__practices" data-hero aria-label="Practice areas">
+            <li>Epic staffing</li>
+            <li>AI governance</li>
+            <li>AI &amp; automation delivery</li>
+          </ul>
         </div>
       </div>
 
     </section>
 
-    <!-- ============ METRICS + HOSPITAL BUYERS ============ -->
-    <section class="section section--cream section--angled" id="hospitals" aria-labelledby="hospitals-title">
+    <!-- ============ METRICS + SERVICES ============ -->
+    <section class="section section--cream section--angled" id="hospitals" aria-labelledby="services-title">
       <div class="container">
         <div class="trust-strip" data-reveal data-reveal-auto>
           <div class="hero__ticker" aria-label="Epic modules supported">
@@ -273,9 +283,71 @@
           </li>
         </ul>
 
+        <header class="section-head" id="services" data-reveal>
+          <div>
+            <h2 class="section-title" id="services-title">One partner across Epic talent and healthcare AI.</h2>
+            <p class="section-lede">Staffing is the core. Around it, the same operators help you put AI under real governance and ship AI projects that hold up inside clinical and revenue-cycle workflows.</p>
+          </div>
+        </header>
+
+        <div class="services-grid" data-reveal-stagger="0.14">
+          <article class="service service--flagship">
+            <span class="service__chip">Core practice</span>
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="9.5" width="4.2" height="11" rx="2.1" fill="currentColor"/><rect x="16.8" y="9.5" width="4.2" height="11" rx="2.1" fill="currentColor"/><path d="M5 12.5c4.7-5.4 9.3-5.4 14 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Epic staffing</h3>
+            <p>Module-matched consultants for the moments when timelines and internal bandwidth are under pressure.</p>
+            <ul>
+              <li>Implementation, optimization, and upgrade coverage</li>
+              <li>Go-live, training, and at-the-elbow support</li>
+              <li>Backfill that protects the daily operation</li>
+              <li>First qualified shortlist in 3–5 days</li>
+            </ul>
+            <a class="feature__link" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&amp;body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">Send a staffing need<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="service">
+            <span class="service__chip">Advisory</span>
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="4.5" y="4" width="15" height="17" rx="3" fill="currentColor" opacity="0.16"/><path d="M9 3.2h6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M8.6 12.4l2.4 2.4 4.4-4.4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.6 17.8h6.8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/></svg>
+            </div>
+            <h3>AI governance &amp; readiness</h3>
+            <p>Oversight your board and surveyors will recognize, built on the frameworks regulators already cite.</p>
+            <ul>
+              <li>AI inventory, intake, and vendor vetting workflow</li>
+              <li>Governance committee and policy design</li>
+              <li>Validation, bias, and monitoring cadence</li>
+              <li>Joint Commission AI certification readiness</li>
+            </ul>
+            <a class="feature__link" href="mailto:inquiries@bridgeline.health?subject=AI%20Governance%20Inquiry&amp;body=Initiative%3A%0ACurrent%20stage%3A%0ATimeline%3A%0AWhat%20is%20at%20risk%3A">Start a governance conversation<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="service">
+            <span class="service__chip">Delivery</span>
+            <div class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor" opacity="0.16"/><path d="M13.2 5.6l-4.6 7h3l-1 5.8 4.8-7h-3z" fill="currentColor"/></svg>
+            </div>
+            <h3>AI &amp; automation delivery</h3>
+            <p>Project teams that ship AI clinicians actually use — inside Epic workflows, not beside them.</p>
+            <ul>
+              <li>Ambient documentation rollout and adoption</li>
+              <li>Epic AI feature enablement and tuning</li>
+              <li>Predictive model validation and monitoring</li>
+              <li>Coding, denials, and back-office automation</li>
+            </ul>
+            <a class="feature__link" href="mailto:inquiries@bridgeline.health?subject=Healthcare%20AI%20Initiative&amp;body=Initiative%3A%0ACurrent%20stage%3A%0ATimeline%3A%0AWhat%20is%20at%20risk%3A">Scope an AI project<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY BRIDGELINE (STAFFING DEPTH) ============ -->
+    <section class="section section--paper" id="staffing" aria-labelledby="staffing-title">
+      <div class="container">
         <header class="section-head" data-reveal>
           <div>
-            <h2 class="section-title" id="hospitals-title">Fewer resume piles. Faster coverage where the build is exposed.</h2>
+            <h2 class="section-title" id="staffing-title">Fewer resume piles. Faster coverage where the build is exposed.</h2>
             <p class="section-lede">BridgeLine is built for teams that cannot wait months for generic recruiting cycles. We focus on the moments when Epic timelines, go-live readiness, and internal bandwidth are under pressure.</p>
           </div>
         </header>
@@ -332,8 +404,8 @@
 
       <div class="container band__grid">
         <header class="band__head" data-reveal>
-          <h2 class="section-title" id="process-title">A focused search process for Epic teams that are already moving.</h2>
-          <p class="section-lede">Every engagement starts with the workstream, not the resume. That keeps the shortlist small, relevant, and easier to approve.</p>
+          <h2 class="section-title" id="process-title">A focused process for teams that are already moving.</h2>
+          <p class="section-lede">Every engagement starts with the workstream, not the resume. That keeps the shortlist small, relevant, and easier to approve — whether the gap is a Cadence analyst or an AI program that needs an owner.</p>
         </header>
 
         <ol class="timeline">
@@ -341,12 +413,12 @@
           <li class="t-step" data-reveal>
             <p class="t-step__meta">Step 1 &middot; 24&ndash;48 hrs</p>
             <h3>Intake</h3>
-            <p>Map module, version, timeline, team structure, location model, and what breaks if the role stays open.</p>
+            <p>Map the module or AI initiative, timeline, team structure, location model, and what breaks if the gap stays open.</p>
           </li>
           <li class="t-step" data-reveal>
             <p class="t-step__meta">Step 2 &middot; 3&ndash;5 days</p>
             <h3>Match</h3>
-            <p>Search the bench for consultants with relevant production build, training, go-live, or RCM experience.</p>
+            <p>Search the bench for consultants with relevant production build, training, go-live, RCM, or AI delivery experience.</p>
           </li>
           <li class="t-step" data-reveal>
             <p class="t-step__meta">Step 3 &middot; Included</p>
@@ -356,14 +428,75 @@
           <li class="t-step" data-reveal>
             <p class="t-step__meta">Step 4 &middot; Week 1</p>
             <h3>Deploy</h3>
-            <p>Coordinate onboarding, credentials, expectations, and early check-ins so the consultant starts cleanly.</p>
+            <p>Coordinate onboarding, credentials, expectations, and early check-ins so the engagement starts cleanly.</p>
           </li>
         </ol>
       </div>
     </section>
 
+    <!-- ============ AI PRACTICE ============ -->
+    <section class="section section--cream" id="ai" aria-labelledby="ai-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div>
+            <h2 class="section-title" id="ai-title">Hospitals are deploying AI faster than they can govern it.</h2>
+            <p class="section-lede">Ambient documentation, predictive models, and AI agents are already inside Epic workflows. The Joint Commission and CHAI published responsible-use guidance in 2025, and certification followed in 2026 — boards now expect someone to own the risk.</p>
+          </div>
+        </header>
+
+        <ul class="metrics metrics--trio" data-reveal-stagger aria-label="Healthcare AI adoption statistics">
+          <li class="metric">
+            <strong>88%</strong>
+            <span>Of health systems already run AI in production workflows.</span>
+          </li>
+          <li class="metric">
+            <strong>&lt;1 in 5</strong>
+            <span>Describe their AI governance as mature.</span>
+          </li>
+          <li class="metric">
+            <strong>2026</strong>
+            <span>The Joint Commission's responsible-AI certification went live.</span>
+          </li>
+        </ul>
+        <p class="metrics__note" data-reveal>Adoption and governance figures: HFMA / Eliciting Insights health-system survey, 2025.</p>
+
+        <div class="split-grid">
+          <div class="split-col" data-reveal>
+            <h3>Govern</h3>
+            <p class="split-sub">Stand up oversight that satisfies boards, surveyors, and your own clinicians.</p>
+            <ul class="roles-list">
+              <li>AI inventory and intake vetting for every tool in use</li>
+              <li>Governance committee, policy, and escalation design</li>
+              <li>Bias, safety, and monitoring cadence aligned to NIST AI RMF</li>
+              <li>Joint Commission / CHAI certification readiness</li>
+              <li>AI vendor evaluation and contract review support</li>
+            </ul>
+          </div>
+          <div class="split-col split-col--rule" data-reveal>
+            <h3>Deliver</h3>
+            <p class="split-sub">Ship the projects on your roadmap with people who know Epic workflows.</p>
+            <ul class="roles-list">
+              <li>Ambient documentation rollout, tuning, and adoption</li>
+              <li>Epic AI feature enablement across clinical and revenue cycle</li>
+              <li>Predictive model validation before and after go-live</li>
+              <li>Coding, denials, and back-office automation</li>
+              <li>Clinician training and change management</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ai-cta" data-reveal>
+          <a class="btn btn--primary" href="mailto:inquiries@bridgeline.health?subject=Healthcare%20AI%20Initiative&amp;body=Initiative%3A%0ACurrent%20stage%3A%0ATimeline%3A%0AWhat%20is%20at%20risk%3A">
+            Bring an AI initiative
+            <svg class="btn__arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <span>Governance sprint, fractional AI program leadership, or a scoped delivery team.</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ MODULES & ROLES ============ -->
-    <section class="section section--cream" id="modules" aria-labelledby="modules-title">
+    <section class="section section--paper" id="modules" aria-labelledby="modules-title">
       <div class="container">
         <header class="section-head" data-reveal>
           <div>
@@ -411,6 +544,8 @@
               <li>At-the-elbow go-live support</li>
               <li>Project managers and workstream leads</li>
               <li>Optimization, upgrade, and backfill consultants</li>
+              <li>AI program, governance, and informatics leads</li>
+              <li>Reporting and analytics consultants</li>
             </ul>
           </div>
         </div>
@@ -418,12 +553,12 @@
     </section>
 
     <!-- ============ ENGAGEMENT MODELS ============ -->
-    <section class="section section--deep" id="models" aria-labelledby="models-title">
+    <section class="section section--cream" id="models" aria-labelledby="models-title">
       <div class="container">
         <header class="section-head" data-reveal>
           <div>
             <h2 class="section-title" id="models-title">Choose the model that matches the risk.</h2>
-            <p class="section-lede">Some teams need immediate contract coverage. Others need a future FTE, a readiness assessment, or help scoping the gap before hiring.</p>
+            <p class="section-lede">Some teams need immediate contract coverage. Others need a future FTE, a readiness assessment, or an owner for an AI program that is moving faster than its oversight.</p>
           </div>
         </header>
 
@@ -431,7 +566,7 @@
           <article class="model model--featured">
             <span class="model__chip">Most common</span>
             <h3>Contract staffing</h3>
-            <p>Module-specific consultants for implementation, go-live, optimization, upgrade, and backfill work.</p>
+            <p>Module-specific consultants for implementation, go-live, optimization, upgrade, backfill, and AI workstreams.</p>
             <ul>
               <li>Typical 3–12 month engagements</li>
               <li>Remote, hybrid, and onsite options</li>
@@ -453,26 +588,26 @@
           </article>
 
           <article class="model">
-            <span class="model__chip">Before hiring</span>
-            <h3>Advisory assessments</h3>
-            <p>Use an Epic-experienced reviewer to clarify team structure, readiness, and coverage gaps.</p>
+            <span class="model__chip">Before committing</span>
+            <h3>Advisory &amp; assessments</h3>
+            <p>Use an Epic- and AI-experienced reviewer to clarify readiness, risk, and the real size of the gap.</p>
             <ul>
-              <li>Module coverage review</li>
+              <li>AI readiness and governance assessment</li>
               <li>Go-live readiness scoring</li>
-              <li>Build versus buy recommendation</li>
+              <li>Fractional AI program leadership</li>
             </ul>
-            <a class="btn btn--outline btn--sm" href="mailto:inquiries@bridgeline.health?subject=Epic%20Advisory%20Assessment">Discuss scope</a>
+            <a class="btn btn--outline btn--sm" href="mailto:inquiries@bridgeline.health?subject=Advisory%20Assessment">Discuss scope</a>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ============ CONSULTANTS ============ -->
-    <section class="section section--cream consultants" id="consultants" aria-labelledby="consultants-title">
+    <section class="section section--paper consultants" id="consultants" aria-labelledby="consultants-title">
       <div class="container consultants__grid">
         <div class="consultants__copy" data-reveal>
           <h2 class="section-title" id="consultants-title">Better Epic work starts with better matching.</h2>
-          <p>If you are an Epic analyst, trainer, build lead, or go-live consultant, BridgeLine gives you transparent rates, direct communication, and fewer irrelevant role blasts.</p>
+          <p>If you are an Epic analyst, trainer, build lead, or go-live consultant — or an informaticist working on healthcare AI — BridgeLine gives you transparent rates, direct communication, and fewer irrelevant role blasts.</p>
           <a class="btn btn--primary" href="consultants.html">
             Join the consultant bench
             <svg class="btn__arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -512,7 +647,7 @@
     </section>
 
     <!-- ============ FAQ ============ -->
-    <section class="section section--paper" id="faq" aria-labelledby="faq-title">
+    <section class="section section--cream" id="faq" aria-labelledby="faq-title">
       <div class="container">
         <header class="section-head" data-reveal>
           <div>
@@ -548,6 +683,22 @@
 
           <details class="faq-item">
             <summary>
+              What does the AI governance work look like?
+              <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            </summary>
+            <div class="faq__body"><p>We help you stand up or mature the oversight boards and surveyors now expect: an AI inventory, an intake and vetting workflow, governance policy and committee design, and a validation and monitoring cadence — aligned to the Joint Commission / CHAI guidance and the NIST AI Risk Management Framework, and mapped to your Epic workflows.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Can you deliver AI projects, not just advise?
+              <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            </summary>
+            <div class="faq__body"><p>Yes. We scope and staff delivery teams for ambient documentation rollouts, Epic AI feature enablement, predictive model validation, and revenue-cycle automation — with governance built in from day one.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
               Are rates transparent?
               <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
@@ -567,7 +718,7 @@
               How do we get started?
               <span class="faq__icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             </summary>
-            <div class="faq__body"><p>Email <a href="mailto:inquiries@bridgeline.health">inquiries@bridgeline.health</a> with the module, timeline, role type, and what is at risk.</p></div>
+            <div class="faq__body"><p>Email <a href="mailto:inquiries@bridgeline.health">inquiries@bridgeline.health</a> with the module or AI initiative, the timeline, and what is at risk.</p></div>
           </details>
         </div>
       </div>
@@ -592,14 +743,14 @@
       <div class="noise" aria-hidden="true"></div>
 
       <div class="container cta__inner" data-reveal>
-        <h2 id="cta-title">Have an Epic gap that cannot wait?</h2>
-        <p>Send the module, timeline, work model, and what is at risk. We will tell you quickly whether BridgeLine can help.</p>
+        <h2 id="cta-title">Have an Epic gap — or an AI mandate — that cannot wait?</h2>
+        <p>Send the module or initiative, the timeline, and what is at risk. We will tell you quickly whether BridgeLine can help.</p>
         <div class="cta__actions">
           <a class="btn btn--primary" href="mailto:inquiries@bridgeline.health?subject=Epic%20Staffing%20Need&amp;body=Module%3A%0AEngagement%20type%3A%0ATimeline%3A%0ARemote%2Fhybrid%2Fonsite%3A%0AWhat%20is%20at%20risk%3A">
             Send a staffing need
             <svg class="btn__arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn--outline" href="consultants.html">I am an Epic consultant</a>
+          <a class="btn btn--outline" href="mailto:inquiries@bridgeline.health?subject=Healthcare%20AI%20Initiative&amp;body=Initiative%3A%0ACurrent%20stage%3A%0ATimeline%3A%0AWhat%20is%20at%20risk%3A">Bring an AI initiative</a>
         </div>
       </div>
     </section>
@@ -618,7 +769,8 @@
       </a>
 
       <ul class="footer__links">
-        <li><a href="#hospitals">Hospitals</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#ai">AI practice</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="consultants.html">Consultants</a></li>
         <li><a href="mailto:inquiries@bridgeline.health">Contact</a></li>

@@ -18,14 +18,13 @@
 
   <script>(function(){var d=document.documentElement;d.classList.add('js');try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('anim-ok');}}catch(e){}})();</script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;650;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260612f">
+  <link rel="preload" href="assets/fonts/inter-tight-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261012">
 
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script type="module" src="assets/js/main.js?v=20260612f"></script>
+  <script defer src="assets/js/vendor/gsap.min.js"></script>
+  <script defer src="assets/js/vendor/ScrollTrigger.min.js"></script>
+  <script type="module" src="assets/js/main.js?v=20261012"></script>
 
   <script type="application/ld+json">
   {
@@ -164,7 +163,7 @@
         <div class="hero__content">
           <p class="eyebrow" data-hero>For Epic consultants</p>
           <h1 class="hero__title" id="hero-title" data-hero>Epic consulting work without the <span class="accent">recruiter noise.</span></h1>
-          <p class="hero__copy" data-hero>BridgeLine connects Epic analysts, trainers, build leads, PMs, and go-live consultants with matched health-system work. You get transparent rates, weekly pay, direct founder communication, and submissions that actually fit your module and work preferences.</p>
+          <p class="hero__copy" data-hero>BridgeLine connects Epic analysts, trainers, build leads, PMs, go-live consultants, and healthcare AI and analytics specialists with matched health-system work. You get transparent rates, weekly pay, direct founder communication, and submissions that actually fit your module and work preferences.</p>
           <div class="hero__actions" data-hero>
             <a class="btn btn--primary" href="https://airtable.com/appZsIyHXa74FLjAa/pagSYBa8anczbScVv/form">
               Send your profile
@@ -180,7 +179,7 @@
             <p>What we capture so the right roles reach you first.</p>
           </div>
           <div class="profile__row"><strong>Modules</strong><span>ASAP, Willow, Resolute PB, Ambulatory, Clarity, Inpatient</span></div>
-          <div class="profile__row"><strong>Role type</strong><span>Analyst, build lead, principal trainer, project manager</span></div>
+          <div class="profile__row"><strong>Role type</strong><span>Analyst, build lead, principal trainer, project manager, AI &amp; analytics</span></div>
           <div class="profile__row"><strong>Work model</strong><span>Remote, hybrid, onsite go-live windows</span></div>
           <div class="profile__row"><strong>Availability</strong><span>Start date, travel limits, rate range, contract preference</span></div>
           <div class="profile__row"><strong>Submission</strong><span>Only when module, timeline, rate, and fit are aligned</span></div>
@@ -277,6 +276,7 @@
               <li>Epic certification or credential in one or more modules</li>
               <li>Production build, implementation, optimization, or support experience</li>
               <li>At least one go-live, upgrade, training rollout, or major workstream</li>
+              <li>Clinical informatics, AI, or analytics delivery inside Epic environments</li>
               <li>Clear work model preferences: remote, hybrid, onsite, or travel windows</li>
               <li>Open to contract, contract-to-hire, or longer consulting engagements</li>
             </ul>
@@ -339,6 +339,11 @@
                 <td><strong>Build Lead / PM</strong><span class="sub">Workstream leadership</span></td>
                 <td>Milestone tracking, stakeholder updates, team coordination, readiness planning</td>
                 <td><span class="tag">Remote</span><span class="tag">Hybrid</span><span class="tag">Onsite</span></td>
+              </tr>
+              <tr>
+                <td><strong>AI &amp; Analytics Consultant</strong><span class="sub">AI delivery and reporting</span></td>
+                <td>Ambient AI rollout, model validation, governance support, Clarity and Cogito reporting</td>
+                <td><span class="tag">Remote</span><span class="tag">Hybrid</span></td>
               </tr>
             </tbody>
           </table>

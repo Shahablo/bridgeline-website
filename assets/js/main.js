@@ -339,7 +339,7 @@
     // the canvas is revealed once the quality governor has settled
     hero.classList.add('hero--booting');
     const boot = () => {
-      import('./hero-scene.js?v=20260612f')
+      import('./hero-scene.js?v=20261012')
         .then((mod) => {
           // belt-and-braces reveal: never leave the canvas hidden, even if the
           // scene module can't signal readiness (e.g. a stale cached version)
